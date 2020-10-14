@@ -1,4 +1,4 @@
-::Created by XGL,for FOTA firmware package generation,2029/2/7
+::Created by XGL,for FOTA firmware package generation,2019/2/7
 @set cur=%2 
 @md %~dp0..\fota\%2
 @xcopy /y %1\flash_download.cfg %~dp0..\fota\%2 >nul
