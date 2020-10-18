@@ -20,7 +20,7 @@ all: check $(OBJS)
 	@arm-none-eabi-gcc -mlittle-endian -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -Wdouble-promotion -mfpu=fpv4-sp-d16 -mfloat-abi=hard --specs=nano.specs -lnosys -nostartfiles -u _printf_float -u _scanf_float -Wl,-wrap=malloc -Wl,-wrap=calloc -Wl,-wrap=realloc -Wl,-wrap=free -Wl,-wrap=memcpy -Wl,-wrap=memset -Wl,-wrap=memmove -Wl,-wrap=memcmp -Wl,-wrap=strcpy -Wl,-wrap=strcmp -Wl,-wrap=strlen -Wl,-wrap=fprintf -Wl,-wrap=_printf_i -Wl,-T'lib/mt2625_flash_bring_up.ld' -Wl,--gc-sections -u md_commit_id_str -Wl,--whole-archive -Wl,--start-group lib/$(strip $(HWVER))obj.a lib/libhal_protected_CM4_GCC.a lib/$(strip $(HWVER))custom_lib_md.a lib/librsdl.a   lib/lib_md.a lib/libtool_authentication_CM4_GCC.a   -Wl,--end-group -Wl,--no-whole-archive $(OBJS) -lm   -o firmware/$(strip $(HWVER))/nbiot_m2m_demo.elf
 	@arm-none-eabi-objcopy -O binary firmware/$(strip $(HWVER))/nbiot_m2m_demo.elf firmware/$(strip $(HWVER))/nbiot_m2m_demo.bin
 check:
-	@mkdir -p out/src/http firmware/DBRN
+	@mkdir -p out/src/http firmware/$(HWVER)
 out/%.o:%.c 
 	@echo 'compile $<...'''
 	@$(CC) $(CFLAGS) $(INC)  -c $< -o $@ -MD -MF $(dir $@)$(notdir $@).d -MT $@
@@ -28,8 +28,7 @@ out/%.o:%.cpp
 	@echo 'compile $<...'''
 	@$(CXX) $(CFLAGS) $(INC) -c $< -o $@ -MD -MF $(dir $@)$(notdir $@).d -MT $@	
 clean:
-	@rm -f $(OBJS)
-	@rm -f $(SRC-C-DEPS)
+	@rm -rf out firmware
 	@echo clean ends
     
 -include $(SRC-C-DEPS)
