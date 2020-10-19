@@ -5729,7 +5729,31 @@ extern ril_status_t ril_request_test_config(ril_request_mode_t mode,
         ril_cmd_response_callback_t callback,
         void *user_data);
 
+typedef struct {
+    char *pattern;
+    int32_t token;
+    int32_t command;
+    int32_t length;
+    char *parameter;
+} ril_radio_call_req_t;
 
+typedef struct {
+    char *pattern;
+    int32_t token;
+    int32_t command;
+    int32_t length;
+    char *cnf_result;
+} ril_radio_call_rsp_t;
+/*AT*MCAL*/
+extern ril_status_t ril_request_radio_call(ril_request_mode_t mode,
+        ril_radio_call_req_t *req,
+        ril_cmd_response_callback_t callback,
+        void *user_data);
+/*AT*MCALDEV*/
+extern ril_status_t ril_request_enter_exit_rf_calibration_state(ril_request_mode_t mode,
+        int32_t caldev_state,
+        ril_cmd_response_callback_t callback,
+        void *user_data);
 #ifdef __cplusplus
 }
 #endif

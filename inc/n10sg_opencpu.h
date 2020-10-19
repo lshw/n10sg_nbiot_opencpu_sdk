@@ -22,7 +22,8 @@
 #include "opencpu_ct.h"
 #include <time.h>
 #include "httpclient.h"
-
+#include "hal_gpt.h"
+#include "cJSON.h"
 typedef unsigned short uint16_t;
 typedef unsigned char uint8;
 typedef unsigned short uint16;

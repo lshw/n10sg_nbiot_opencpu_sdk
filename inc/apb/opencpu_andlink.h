@@ -15,12 +15,13 @@ extern void opencpu_andlink_init();
 * 参  数:
           ip:       需注册的andlink平台服务器IP
           is_bs:    是否bootstrap服务器
+		  psk:		公钥，用于加密接入平台
           cot_cb:   需注册的回调函数
 * 返回值:
           0: 创建成功，创建成功后
           >0:创建失败，错误码参照错误码定义
  ***********************************************************************/
-extern int opencpu_andlink_create(char *ip, int is_bs, cot_cb_t *cot_cb);
+extern int opencpu_andlink_create(char *ip, int is_bs, char *psk, cot_andlink_cb_t *cot_cb);
 
 
 
@@ -54,7 +55,7 @@ extern int opencpu_andlink_add_obj(int objid, int inscount, unsigned char* bitma
 /**********************************************************************
 * 描  述: 删除一个object，同时将删除相关的所有instance和resource数据
 * 参  数:
-          objid:    object id,本次需删除的object，如3200
+          objid:    object id,本次需删除的object
 * 返回值:
           0: 删除成功
           >0:删除失败，错误码参照错误码定义
@@ -71,19 +72,17 @@ extern int opencpu_andlink_del_obj(int objid);
           0: 操作发起成功，操作是否成功依据模组cot_event_cb_t回调结果
           >0:操作发起失败，错误码参照错误码定义
  ***********************************************************************/
-extern int opencpu_andlink_open(unsigned int timeout, unsigned int lifetime);
+extern int opencpu_andlink_open(unsigned int lifetime, unsigned int timeout);
 
 /**********************************************************************
 * 描  述: 向平台发起更新生命周期或当前object请求
 * 参  数:
           lifetime:    更新的lifetime值，单位为s，如果小于10则表示使用默认的lifetime值，86400s
-          flag:        是否需要同时更新注册的Object对象
-                       0:不更新     1:更新
 * 返回值:
           0: 操作发起成功，操作是否成功依据模组cot_event_cb_t回调结果
           >0:操作发起失败，错误码参照错误码定义
  ***********************************************************************/
-extern int opencpu_andlink_update(unsigned int lifetime, int flag);
+extern int opencpu_andlink_update(unsigned int lifetime);
 
 /**********************************************************************
 * 描  述: 向平台发起查询是否在注册状态
@@ -100,69 +99,69 @@ extern int opencpu_andlink_is_open(void);
 /**********************************************************************
 * 描  述: 向平台上报指定resource数据的变化
 * 参  数:
-          objid: object id,本次需上报数据的对象ID，如3200
-          insid: instance id，本次需上报数据的实例ID
-          resid: resource id，本次需上报数据的资源ID
-          type:  发送的数据类型，不透明类型为十六进制字符串直接上报
-                 1      2       3       4       5
-                 string opaque  integer float   bool
-                 字符串 不透明  整形    浮点型  布尔型
           value: 发送的数据
-          flag:  消息标识 0:该Notify消息暂不上报 1:上报未上报的Notify消息(同一instance下)
           ack_id:指定该消息是否以响应形式上报  -1:非响应模式  >=0:响应模式
                  如果为响应模式，该条Notify消息成功时将被cot_notify_cb_t回调
                  该ack_id应该为不同的值
-          mode:  是否使用RAI功能，当前暂不提供该功能
+
 * 返回值:
           0:  操作成功
           >0: 操作失败，错误码参照错误码定义
  ***********************************************************************/
-extern int opencpu_andlink_notify(int objid, int insid, int resid, int type, char *value, int flag, int ack_id, int mode);
+extern int opencpu_andlink_notify(int ack_id, char *value);
 
 /**********************************************************************
 * 描  述: cot_read_cb被回调后，回复平台读取到的资源的值。
 * 参  数:
           mid:   收到的+MIPLREAD的消息携带的mid。
-          objid: object id,本次需回复数据的对象ID，如3200
-          insid: instance id，本次需回复数据的实例ID
-          resid: resource id，本次需回复数据的资源ID
-          type:  回复的数据类型，不透明类型为十六进制字符串直接上报
-                 1      2       3       4       5
-                 string opaque  integer float   bool
-                 字符串 不透明  整形    浮点型  布尔型
           value: 回复的数据
-          flag:  消息标识 0:该read回复暂不回复 1:回复未回复的read消息(同一instance下)
+
 * 返回值:
           0:  操作成功
           >0: 操作失败，错误码参照错误码定义
  ***********************************************************************/
-extern int opencpu_andlink_read(int mid, int objid, int insid, int resid, int type, char *value, int flag);
+extern int opencpu_andlink_read(int mid, char *value);
 
 /**********************************************************************
-* 描  述: 以下回调函数被回调后，回复平台操作结果
-          cot_write_cb
-          cot_execute_cb
-          cot_observe_cb
-          cot_parameter_cb
+* 描  述: 回调函数被回调后，回复平台操作结果
+
 * 参  数:
           mid:       收到的操作消息携带的mid
           result:    操作结果返回码
-          is_observe:是否是MIPLOBSERVE操作
+
 * 返回值:
           0:  操作成功
           >0: 操作失败，错误码参照错误码定义
  ***********************************************************************/
-extern int opencpu_andlink_result(int mid, int result, int is_observe);
+extern int opencpu_andlink_result(int mid, int result);
 
 /**********************************************************************
-* 描  述: 配置平台设备ID
+* 描  述: 平台配置参数设置
 * 参  数:
-          value: 平台设备ID
+          key: 配置的参数名称
+				"DEVICETYPE": 设备类型码
+				"FWVERSION":  固件版本
+
+		  value: 入参，要设置的参数值，若设置为NULL，则为删除该值
 * 返回值:
           0:  操作成功
           >0: 操作失败，错误码参照错误码定义
  ***********************************************************************/
-extern int opencpu_andlink_config(char *value);
+extern int opencpu_andlink_config_set(char *key, char *value);
+
+/**********************************************************************
+* 描  述: 平台配置参数获取
+* 参  数:
+          key: 配置的参数名称
+				"DEVICETYPE": 设备类型码
+				"FWVERSION":  固件版本
+
+		  value: 出参，用于存放所获取的参数值
+* 返回值:
+          0:  操作成功
+          >0: 操作失败，错误码参照错误码定义
+ ***********************************************************************/
+extern int opencpu_andlink_config_get(char *key, char *value);
 //************************************OPENCPU接口************************************************************
 
 #endif

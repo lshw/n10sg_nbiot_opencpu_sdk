@@ -40,9 +40,19 @@ typedef void (*ct_read_cb_t)      (int read_actual_length, int remain_length, ch
 		  11 deregister success
   		  12 deregister failed
 		  13 lwm2m session abnormal
+		  15 received platform RESET message
 * 返回值:
  ***********************************************************************/
 typedef void (*ct_evtind_cb_t)    (int type);
+
+/**********************************************************************
+* 描  述: 打印消息发送中mid ACK消息回调函数，需用户实现
+* 参  数:
+          type: 消息上报的类型
+		  mid: mid值
+* 返回值:
+ ***********************************************************************/
+typedef void (*ct_evtind_mid_cb_t)    (int type, int mid);
 
 /**********************************************************************
 * 描  述: 消息发送状态上报回调函数，需用户实现
@@ -66,6 +76,7 @@ typedef struct ct_cb
 	ct_nmi_cb_t	onNmi;
 	ct_read_cb_t onRead;
 	ct_evtind_cb_t onEvtind;
+	ct_evtind_mid_cb_t onEvtind_mid;
 	ct_str_cb_t	onStr;
 	ct_drop_cb_t onDrop;
 }ct_cb_t;
@@ -75,7 +86,7 @@ typedef struct ct_cb
 * 参  数: ct_cb: 需注册的回调函数
 * 返回值:
  ***********************************************************************/
-extern void opencpu_ct_create(ct_cb_t *ct_cb); 
+extern void opencpu_ct_create(ct_cb_t *ct_cb);
 
 /**********************************************************************
 * 描  述: 创建CT设备实例，当前只允许创建一个设备
@@ -87,19 +98,6 @@ extern void opencpu_ct_create(ct_cb_t *ct_cb);
           0: 创建失败
  ***********************************************************************/
 extern int opencpu_ct_new(char *server, char *port);
-
-/**********************************************************************
-* 描  述: 创建CT设备实例（带加密），当前只允许创建一个设备
-* 参  数:
-          server: 需注册的CT平台服务器IP
-          port:   需注册的CT平台服务器port
-		  pskid   Mandatory for DTLS port, like 5684
-		  psk	  Mandatory for DTLS port, like 5684
-* 返回值:
-          1: 创建成功
-          0: 创建失败
- ***********************************************************************/
-extern int opencpu_ct_new_ex(char *server, char *port, char *pskid, char *psk);
 
 /**********************************************************************
 * 描  述: 将已实例化的设备注册至平台
@@ -124,10 +122,10 @@ extern int opencpu_ct_update();
 
 /**********************************************************************
 * 描  述: 配置消息收发格式（HEX/TEXT）
-* 参  数: 
-		send_data_format: 0 //HEX (default)  
+* 参  数:
+		send_data_format: 0 //HEX (default)
 						  1 //TEXT
-		recvformat： 0 //HEX (default)  
+		recvformat： 0 //HEX (default)
 					 1 //TEXT
 * 返回值:
           1: 配置成功
@@ -137,8 +135,8 @@ extern int opencpu_ct_setcfg(int sendformat, int recvformat);
 
 /**********************************************************************
 * 描  述: 发送消息至CT平台
-* 参  数: 
-		length: 发送消息长度  
+* 参  数:
+		length: 发送消息长度
 		data： 发送消息内容，发送内容必须与平台设备profile定义字段匹配
 * 返回值:
           1: 发送成功
@@ -148,14 +146,19 @@ extern int opencpu_ct_send(int length, char *data);
 
 /**********************************************************************
 * 描  述: 发送消息至CT平台（带消息发送状态回传）
-* 参  数: 
-		length: 发送消息长度  
+* 参  数:
+		length: 发送消息长度
 		data： 发送消息内容，发送内容必须与平台设备profile定义字段匹配
 		mode： 发送的 COAP 消息类型
-				BIT 0-2： 0 发送 CON 消息 默认
-						  1 发送 NON 消息
+				BIT 0-2： 000 发送 NON 消息 默认
+						  001 发送 CON 消息
 				BIT 3  是否携带 RAI 标志，对于 NON 消息类型，携带 RELEASE 释放辅助指示， 对于 CON消息携带 RELEASE_AFTER_REPLY 释放辅助指示
-		seq： 表示是否需要支持查询发送状态
+						0 不需要携带 RAI 标志 默认
+						1 需要携带 RAI 标志
+		seq： 表示是否使能上报本次发送数据到基站的状态（空口回传） 上报功能，可省略。
+				0 关闭空口回传功能， 默认
+				1-255 使能空口回传功能， 数据成功发送至
+事件上报
 * 返回值:
           1: 发送成功
           0: 发送失败
@@ -163,9 +166,31 @@ extern int opencpu_ct_send(int length, char *data);
 extern int opencpu_ct_send_ex(int length, char *data, int mode, int seq);
 
 /**********************************************************************
+* 描  述: 发送消息至CT平台（带mid值消息发送状态回传）
+* 参  数:
+		length: 发送消息长度
+		data： 发送消息内容，发送内容必须与平台设备profile定义字段匹配
+		mode： 发送的 COAP 消息类型
+				BIT 0-2： 000 发送 NON 消息 默认
+						  001 发送 CON 消息
+				BIT 3  是否携带 RAI 标志，对于 NON 消息类型，携带 RELEASE 释放辅助指示， 对于 CON消息携带 RELEASE_AFTER_REPLY 释放辅助指示
+						0 不需要携带 RAI 标志 默认
+						1 需要携带 RAI 标志
+		seq： 表示是否使能上报本次发送数据到基站的状态（空口回传） 上报功能，可省略。
+				0 关闭空口回传功能， 默认
+				1-255 使能空口回传功能， 数据成功发送至
+		mid: 返回值，返回消息对应mid值，用以区分多条消息平台接收状态
+事件上报
+* 返回值:
+          1: 发送成功
+          0: 发送失败
+ ***********************************************************************/
+extern int opencpu_ct_send_ex_mid(int length, char *data, int mode, int seq, int *mid);
+
+/**********************************************************************
 * 描  述: 手动读取消息模式下读取平台下发消息
-* 参  数: 
-		readlength: 消息读取长度  
+* 参  数:
+		readlength: 消息读取长度
 		read_actual_length： 返回值，实际读取长度
 		remain_length： 返回值，剩余待读取长度
 		data： 返回值，读取消息内容
@@ -173,11 +198,11 @@ extern int opencpu_ct_send_ex(int length, char *data, int mode, int seq);
           1: 读取成功
           0: 读取失败
  ***********************************************************************/
-extern int opencpu_ct_read(int readlength, int read_actual_length, int remain_length, char *data);
+extern int opencpu_ct_read(int readlength, int *read_actual_length, int *remain_length, char *data);
 
 /**********************************************************************
 * 描  述: 设备注销
-* 参  数: 
+* 参  数:
 * 返回值:
           1: 注销成功
           0: 注销失败
@@ -186,7 +211,7 @@ extern int opencpu_ct_close();
 
 /**********************************************************************
 * 描  述: 删除设备实例（推荐先注销后删除，若平台无响应无法注销也可直接删除设备实例）
-* 参  数: 
+* 参  数:
 * 返回值:
           1: 删除成功
           0: 删除失败
