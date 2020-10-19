@@ -1,0 +1,45 @@
+
+文件：./libtool_authentication_CM4_GCC.a(tool_authentication.o)
+
+Symbol table '.symtab' contains 40 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000000     0 FILE    LOCAL  DEFAULT  ABS tool_authentication.c
+     2: 00000000     0 SECTION LOCAL  DEFAULT    1 
+     3: 00000000     0 SECTION LOCAL  DEFAULT    2 
+     4: 00000000     0 SECTION LOCAL  DEFAULT    3 
+     5: 00000000     0 SECTION LOCAL  DEFAULT    4 
+     6: 00000000     0 NOTYPE  LOCAL  DEFAULT    4 $t
+     7: 00000000     0 SECTION LOCAL  DEFAULT    6 
+     8: 00000000     0 NOTYPE  LOCAL  DEFAULT    6 $t
+     9: 00000000     0 SECTION LOCAL  DEFAULT    8 
+    10: 00000000     0 NOTYPE  LOCAL  DEFAULT    8 $t
+    11: 00000000     0 SECTION LOCAL  DEFAULT   10 
+    12: 00000000     0 SECTION LOCAL  DEFAULT   12 
+    13: 00000000     0 SECTION LOCAL  DEFAULT   13 
+    14: 00000000     0 SECTION LOCAL  DEFAULT   15 
+    15: 00000000     0 SECTION LOCAL  DEFAULT   17 
+    16: 00000000     0 SECTION LOCAL  DEFAULT   19 
+    17: 00000000     0 SECTION LOCAL  DEFAULT   21 
+    18: 00000010     0 NOTYPE  LOCAL  DEFAULT   24 $d
+    19: 00000000     0 SECTION LOCAL  DEFAULT   24 
+    20: 00000000     0 SECTION LOCAL  DEFAULT   22 
+    21: 00000000     0 SECTION LOCAL  DEFAULT   23 
+    22: 00000001    30 FUNC    GLOBAL DEFAULT    4 tool_auth_is_required
+    23: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_efuse_is_tool_auth_en
+    24: 00000001    16 FUNC    GLOBAL DEFAULT    6 tool_auth_get_uid
+    25: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_efuse_read_uid
+    26: 00000001   334 FUNC    GLOBAL DEFAULT    8 tool_auth_verify_certific
+    27: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND memset
+    28: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_clock_enable
+    29: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_sha256_init
+    30: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND memcpy
+    31: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_sha256_append
+    32: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_sha256_end
+    33: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_efuse_is_pubkey_hash_
+    34: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND mbedtls_rsa_init
+    35: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND mbedtls_mpi_read_binary
+    36: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND mbedtls_rsa_pkcs1_verify
+    37: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_efuse_is_uid_matched
+    38: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_clock_is_enabled
+    39: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND hal_clock_disable
