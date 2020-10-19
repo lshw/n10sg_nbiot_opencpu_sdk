@@ -1,4 +1,4 @@
-﻿/*
+/*
    n10sg_opencpu.c
    created by xgl,2018/4/2
 */
