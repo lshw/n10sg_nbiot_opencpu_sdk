@@ -24,7 +24,7 @@ int get_factory_mode(void)
 	int uart3_log;
 	opencpu_read_port_config(GKI_LOG_NAME,&gki_port);
 	opencpu_read_port_config(HSL_LOG_NAME,&hsl_port);
-	
+
 	if( (gki_port != USER_GKI_LOG_PORT) || (hsl_port != USER_HSL_LOG_PORT)) //根据读的结果决定是否写
 	{
 		opencpu_write_port_config(GKI_LOG_NAME,USER_GKI_LOG_PORT);
@@ -54,8 +54,8 @@ int get_factory_mode(void)
         }
 		opencpu_reboot();//因为设置是重启生效，所以设置完必须有reboot函数
 	}
-	
-	
+
+
 	return 1;
 }
 
@@ -67,7 +67,7 @@ int opencpu_custom_swver_cb(unsigned char *p)
     unsigned char * temp = "OpenCPU VX.X.X";
     strcpy(p,temp);
     return 1;
-    
+
 }
 /********************************************************************************/
 //此函数为wakeup引脚中断回调函数，在wakein引脚拉低时触发执行
@@ -80,13 +80,13 @@ void opencpu_wakeup_callback()
 /********************************************************************************/
 static int char_to_int(unsigned char *s)
 {
-	int i;  
-    int n = 0;  
-    for (i = 0; s[i] >= '0' && s[i] <= '9'; ++i)  
-    {  
-        n = 10 * n + (s[i] - '0');  
-    }  
-    return n;  
+	int i;
+    int n = 0;
+    for (i = 0; s[i] >= '0' && s[i] <= '9'; ++i)
+    {
+        n = 10 * n + (s[i] - '0');
+    }
+    return n;
 }
 
 //测试获取实时时间，以及计算time(null)返回值的示例
@@ -104,10 +104,10 @@ void test_get_time()
 	l_tm.tm_year = atoi(time_string)-1900;
 	p2 = strchr(p1+1,'/');
 	*p2 = 0;
-	l_tm.tm_mon = atoi(p1+1)-1;	
+	l_tm.tm_mon = atoi(p1+1)-1;
 	p1 = strchr(p2+1,',');
 	*p1 =0;
-	l_tm.tm_mday = atoi(p2+1);	
+	l_tm.tm_mday = atoi(p2+1);
 	p2 = strchr(p1+1,':');
 	*p2 = 0;
 	l_tm.tm_hour = atoi(p1+1);
@@ -135,7 +135,7 @@ void test_set_time()
 */
 	opencpu_rtc_set_time("94/05/06,22:10:00+08");
 	opencpu_printf("time set ok\n");
-	
+
 }
 /********************************************************************************/
 //测试获取IMEI
@@ -145,7 +145,7 @@ void test_get_imei()
 	memset(local_imei,0,40);
 	opencpu_printf("result:%d\n",opencpu_get_imei(local_imei));
 	opencpu_printf("IMEI:%s\n",local_imei);
-	
+
 }
 /********************************************************************************/
 //测试获取IMSI
@@ -155,7 +155,7 @@ void test_get_imsi()
 	memset(local_imsi,0,40);
 	opencpu_printf("result:%d\n",opencpu_get_imsi(local_imsi));
 	opencpu_printf("IMSI:%s\n",local_imsi);
-	
+
 }
 /********************************************************************************/
 //测试获取ICCID
@@ -200,7 +200,7 @@ void test_dm_auto_mode()
 	opencpu_dm_start(dm_config);//自动模式下调用此函数之后即会定时上报DM信息
 }
 void test_dm_trigger_mode()
-{	
+{
 	dm_config_t dm_config = {
 		1, //测试
 		1, //enable
@@ -210,9 +210,9 @@ void test_dm_trigger_mode()
 		"n525A97z0M7Vyh91b0508l7j0U5g2g9Y"};
 	opencpu_dm_set_mode(0);
 	opencpu_dm_start(dm_config);//手动模式下，调用此函数后只是初始化，要上报DM信息需要调用opencpu_dm_update();
-	
+
 	opencpu_dm_update();
-	
+
 }
 /********************************************************************************/
 //测试FLASH
@@ -225,4 +225,28 @@ void flash_test()
 	opencpu_flash_write(1,temp_write,strlen(temp_write));
 	opencpu_flash_read(1,temp_read,6);
 	opencpu_printf("read:%s\n",temp_read);
+}
+void cJSON_test()
+{
+    cJSON *root=NULL;
+    cJSON *sub_js=NULL;
+    char *out=NULL;
+
+    root = cJSON_CreateObject();
+    cJSON_AddStringToObject(root, "ver", "v3.3.0");
+    cJSON_AddStringToObject(root, "imei", "1xxxxxxxxxxxxxxxx");
+    cJSON_AddStringToObject(root, "hardware_ver", "V1.0.0");
+    cJSON_AddStringToObject(root, "software_ver", "V3.3.0");
+    cJSON_AddItemToObject(root, "data", sub_js = cJSON_CreateObject());
+    cJSON_AddNumberToObject(sub_js, "status", 1);
+    cJSON_AddTrueToObject(sub_js, "material");
+    cJSON_AddTrueToObject(sub_js, "power_on");
+    cJSON_AddNumberToObject(sub_js, "qty", 123);
+    cJSON_AddStringToObject(root, "dt", "2017-11-04T05:15:52");
+
+    out=cJSON_Print(root);
+    cJSON_Delete(root);
+    opencpu_printf("%s\n",out);
+    cJSON_free(out);
+
 }

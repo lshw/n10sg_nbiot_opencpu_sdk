@@ -14,8 +14,8 @@ char test_rx_buf[100];
 */
 void test_cmdns_cb(unsigned char *ip)
 {
-	
-    opencpu_printf ("opencpu dns:%s\n",ip);	
+
+    opencpu_printf ("opencpu dns:%s\n",ip);
 }
 /*
    ping功能的回调函数，用户在这个回调函数里处理结果
@@ -24,7 +24,7 @@ void test_ping_cb(ping_result_type_t type, void* p)
 {
     switch(type)
 	{
-        case PING_TOTAL_RESULT: 
+        case PING_TOTAL_RESULT:
 		{
 		    if (p) {
 				ping_result_t* ping_result = (ping_result_t*)p;
@@ -95,13 +95,13 @@ struct in_addr test_remote_addr;
 */
 void udp_test()
 {
-    struct sockaddr_in server_addr;  
-    int sock_fd; 
+    struct sockaddr_in server_addr;
+    int sock_fd;
 	struct addrinfo dd;
     struct sockaddr_in from;
     int data_len;
-	inet_aton("47.93.217.230", &test_remote_addr);  
-    test_remote_port = 2019;	
+	inet_aton("47.93.217.230", &test_remote_addr);
+    test_remote_port = 2019;
 	socklen_t fromlen = sizeof(struct sockaddr_in);
 	sock_fd = socket(AF_INET, SOCK_DGRAM, 0);
 	if(sock_fd == -1)
@@ -109,12 +109,12 @@ void udp_test()
 		opencpu_printf ( "socket create error\n");
 		return;
 	}
-	memset(&server_addr, 0, sizeof(server_addr)); 
-	server_addr.sin_family = AF_INET;  
-    server_addr.sin_addr.s_addr = test_remote_addr.s_addr;  
-    server_addr.sin_port = htons(test_remote_port);  
+	memset(&server_addr, 0, sizeof(server_addr));
+	server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = test_remote_addr.s_addr;
+    server_addr.sin_port = htons(test_remote_port);
 
-	connect(sock_fd, (struct sockaddr *)&server_addr, sizeof(struct sockaddr)); 
+	connect(sock_fd, (struct sockaddr *)&server_addr, sizeof(struct sockaddr));
 	opencpu_printf ("data sending\n");
 	send(sock_fd, (char *)test_msg, sizeof(test_msg), 0);
 	 memset(test_rx_buf,0,100);
@@ -123,14 +123,14 @@ void udp_test()
     opencpu_printf ( "waiting...\n");
     data_len = recvfrom(sock_fd, test_rx_buf,
                     100, MSG_TRUNC, (struct sockaddr*)&from, &fromlen);
-    opencpu_printf("waiting end\n");                   
+    opencpu_printf("waiting end\n");
 	if(data_len >0)
 		{
 		    opencpu_printf ( "get:%s\n",test_rx_buf);
-			opencpu_printf ( "len:%d\n",data_len);			 
+			opencpu_printf ( "len:%d\n",data_len);
 		}
-		
-	close(sock_fd);	
+
+	close(sock_fd);
 }
 
 
@@ -140,18 +140,18 @@ void udp_test()
 */
 void tcp_test()
 {
-	struct sockaddr_in server_addr;  
-    int sock_fd;  
+	struct sockaddr_in server_addr;
+    int sock_fd;
     int data_len;
-	inet_aton("47.93.217.230", &test_remote_addr);  
+	inet_aton("47.93.217.230", &test_remote_addr);
     test_remote_port = 2019;
-	sock_fd = socket(AF_INET, SOCK_STREAM, 0);  
-	if (sock_fd == -1) {  
+	sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+	if (sock_fd == -1) {
         opencpu_printf ( "socket create error\n");
 		 return;
-    }  
+    }
 	memset(&server_addr, 0, sizeof(server_addr));
-	server_addr.sin_family = AF_INET;  
+	server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = test_remote_addr.s_addr;
     server_addr.sin_port = htons(test_remote_port);
     if(connect(sock_fd, (struct sockaddr *)&server_addr, sizeof(struct sockaddr)))
@@ -167,16 +167,16 @@ void tcp_test()
         opencpu_printf ( "tcp waiting...\n");
         data_len = recv(sock_fd, test_rx_buf,100, MSG_TRUNC);
         opencpu_printf ( "waiting end\n");
-                    
+
 	    if(data_len >0)
 		{
 		    opencpu_printf ("get:%s\n",test_rx_buf);
-			opencpu_printf ( "len:%d\n",data_len);			 
+			opencpu_printf ( "len:%d\n",data_len);
 		}
 		opencpu_printf ( "tcp waiting..1.\n");
         data_len = recv(sock_fd, test_rx_buf,100, MSG_TRUNC);
         opencpu_printf ( "waiting end1\n");
 	close(sock_fd);
-	
+
 }
 

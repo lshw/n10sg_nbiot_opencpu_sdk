@@ -21,11 +21,18 @@ void onEvtind_cb(int type)
     opencpu_printf("onEvtind_cb:%d\n",type);
     return;
 }
+void onEvtind_mid_cb(int type, int mid)
+{
+    //TODO
+    //...
+    opencpu_printf("onEvtind_cb:%d,%d\n",type, mid);
+    return;
+}
 void onStr_cb(int seq, int status)
 {
     //TODO
     //...
-    opencpu_printf("onStr_cb:%d, %d", seq, status);
+    opencpu_printf("onStr_cb:%d, %d\n", seq, status);
     return;
 }
 void onDrop_cb(int length)
@@ -36,12 +43,13 @@ void onDrop_cb(int length)
     return;
 }
 
-void test_ct()
+void test_ct_init()
 {
 	ct_cb_t callback;
     callback.onNmi = onNmi_cb;
     callback.onRead = onRead_cb;
     callback.onEvtind = onEvtind_cb;
+    callback.onEvtind_mid = onEvtind_mid_cb;
     callback.onStr = onStr_cb;
     callback.onDrop = onDrop_cb;
 
@@ -54,27 +62,20 @@ void test_ct()
     else
     {
         opencpu_printf("ct_new fail\n");
+        return;
     }
-    vTaskDelay(1000 / portTICK_RATE_MS); 
+    vTaskDelay(1000 / portTICK_RATE_MS);
 
-    if(APB_PROXY_RESULT_OK == opencpu_ct_open(0, 90))
+    if(APB_PROXY_RESULT_OK == opencpu_ct_open(1, 90))
     {
         opencpu_printf("ct_open OK\n");
     }
     else
     {
         opencpu_printf("ct_open fail\n");
+        return;
     }
-    vTaskDelay(4000 / portTICK_RATE_MS);
 
-    if(APB_PROXY_RESULT_OK == opencpu_ct_update())
-    {
-        opencpu_printf("ct_update OK\n");
-    }
-    else
-    {
-        opencpu_printf("ct_update fail\n");
-    }
     vTaskDelay(1000 / portTICK_RATE_MS);
 
     if(APB_PROXY_RESULT_OK == opencpu_ct_setcfg(1,1))
@@ -84,27 +85,52 @@ void test_ct()
     else
     {
         opencpu_printf("ct_setcfg fail\n");
+        return;
     }
 
-    if(APB_PROXY_RESULT_OK == opencpu_ct_send_ex(10, "1234567891", 0, 1))
+    return;
+}
+
+void test_ct_send()
+{
+    int mid = 0;
+    if(APB_PROXY_RESULT_OK == opencpu_ct_send_ex_mid(10, "mid4567898", 9, 33, &mid))
     {
-        opencpu_printf("ct_send1 OK\n");
+        opencpu_printf("opencpu_ct_send_ex_mid OK, mid:%d\n", mid);
     }
     else
     {
         opencpu_printf("ct_send1 fail\n");
+        return;
     }
     vTaskDelay(1000 / portTICK_RATE_MS);
+}
 
-    if(APB_PROXY_RESULT_OK == opencpu_ct_send_ex(10, "1234567892", 0, 1))
+void test_ct_read()
+{
+    int read_actual_length = 0;
+    int remain_length = 0;
+    char *readdata = (char*)malloc(50);
+    if (readdata == NULL)
     {
-        opencpu_printf("ct_send1 OK\n");
+        opencpu_printf("malloc fail\n");
+        return;
+    }
+    memset(readdata, 0 , sizeof(readdata));
+
+    if(APB_PROXY_RESULT_OK == opencpu_ct_read(10, &read_actual_length, &remain_length, readdata))
+    {
+        opencpu_printf("ct_read OK read_actual_length:%d remain_length:%d readdata:%s\n" ,read_actual_length, remain_length, readdata);
     }
     else
     {
-        opencpu_printf("ct_send1 fail\n");
+        opencpu_printf("ct_read fail\n");
+        return;
     }
+}
 
+void test_ct_deinit()
+{
     if(APB_PROXY_RESULT_OK == opencpu_ct_close())
     {
         opencpu_printf("ct_close OK\n");
@@ -112,6 +138,7 @@ void test_ct()
     else
     {
         opencpu_printf("ct_close fail\n");
+        return;
     }
     vTaskDelay(3000 / portTICK_RATE_MS);
     if(APB_PROXY_RESULT_OK == opencpu_ct_client_delte())
@@ -121,6 +148,8 @@ void test_ct()
     else
     {
         opencpu_printf("ct_delte fail\n");
+        return;
     }
-	
+
+    return;
 }

@@ -7,7 +7,7 @@ void opencpu_event_cb(int event)
 	opencpu_printf("event:%d\n",event);
 	switch(event)
 	{
-		case CIS_EVENT_REG_SUCCESS: 
+		case CIS_EVENT_REG_SUCCESS:
 		{
 			is_ref = 1;
 			opencpu_printf("onenet register done!\n");
@@ -100,7 +100,7 @@ void test_onenet()
 	callback.onEvent = opencpu_event_cb;
 	callback.onNotify = opencpu_notify_cb;
 	callback.onDiscover = NULL;
-	
+
 	opencpu_onenet_init();//初始化任务
 	opencpu_onenet_create("183.230.40.39", 1, &callback);//创建设备
    	opencpu_onenet_add_obj(3200, 2, "10", 0, 0);
@@ -125,5 +125,5 @@ void test_onenet()
         opencpu_printf("close onenet");
         opencpu_onenet_close(4);//清理设备
     }
-	
+
 }

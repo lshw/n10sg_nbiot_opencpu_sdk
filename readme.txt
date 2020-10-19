@@ -1,5 +1,5 @@
-版本：N10SG-opencpu_sdk_v1.0.0_release
-日期：2019\11\20
+版本：N10SG-opencpu_sdk_v1.1.0_release
+日期：2020\07\02
 1.使用前请阅读N10SG OpenCPU 开发指导手册.pdf
 2.用户函数在void opencpu_task_main()中添加，该函数作为一个任务运行，不能长时间阻塞，否则会死机
 3.请参照src目录下各文件中示例代码进行开发，onenet功能请参照onenet_test.c及opencpu_onenet.h进行开发。

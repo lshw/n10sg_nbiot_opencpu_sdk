@@ -8,14 +8,14 @@
 
 extern unsigned int OC_DEBUG_CHANNEL;
 /*
-  综合测试函数  
+  综合测试函数
 */
 void test_all_in_one()
 {
 	int i;
 	unsigned char temp;
 	unsigned  char iccid[40]={0};
-	
+
 	int iccid_len;
 	unsigned char *p = 0;
 	int rssi,rxlevel;
@@ -23,15 +23,14 @@ void test_all_in_one()
     unsigned char spi_rx_buf[2]= {0};
     unsigned char spi_tx_buf[2]= {0};
 	unsigned char base_version[30] = {0};
-    hal_spi_master_config_t l_config;	
+    hal_spi_master_config_t l_config;
 	hal_spi_master_send_and_receive_config_t spi_send_and_receive_config;
 	custom_uart_init();
 	opencpu_get_base_version(base_version);
-	opencpu_printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");	
+	opencpu_printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	opencpu_printf(opencpu_fota_version_cb());
-	opencpu_printf("\nBASE_VERSION:%s",base_version);
+	opencpu_printf("\nBASE_VERSION:%s\n",base_version);
 	opencpu_printf("update status:%d\n",update_status);
-	opencpu_printf("run mode:%d\n",get_run_mode());
 	if(opencpu_is_boot_from_sleep()==1)
 	{
 
@@ -53,7 +52,7 @@ void test_all_in_one()
 		vTaskDelay(10);
 	}
 	opencpu_printf("network register success\n");
-	opencpu_printf("network ready!!\n");	
+	opencpu_printf("network ready!!\n");
 	test_pwm_init();
 	opencpu_printf("please input cmds");
 	uart_cmd = 0;
@@ -80,7 +79,7 @@ void test_all_in_one()
 			uart_cmd = 0;
 		}
 	  //测试udp
-	   if(uart_cmd=='U') 
+	   if(uart_cmd=='U')
 	    {
 		udp_test();
 		uart_cmd = 0;
@@ -145,7 +144,7 @@ void test_all_in_one()
 	   {
 		   test_set_time();
 		   uart_cmd = 0;
-		   
+
 	   }
 	   //测试flash
 	   if(uart_cmd == 'F')
@@ -156,13 +155,13 @@ void test_all_in_one()
 	   //测试PWM打开
 	   if(uart_cmd == 'p')
 	   {
-		   opencpu_pwm_start(3);	   
+		   opencpu_pwm_start(3);
 		   uart_cmd = 0;
 	   }
 	   //测试PWM关闭
 	   if(uart_cmd == 'Z')
 	   {
-		    opencpu_pwm_stop(3);	   
+		    opencpu_pwm_stop(3);
 		    uart_cmd = 0;
 	   }
        if(uart_cmd == '1')
@@ -177,7 +176,7 @@ void test_all_in_one()
 	   }
 	   if(uart_cmd == '2')
 	   {
-		    
+
 			opencpu_printf("prod imei write:%d\n",opencpu_write_prod_imei("869975030003275"));
 		    uart_cmd = 0;
 	   }
@@ -194,7 +193,7 @@ void test_all_in_one()
 		   ril_eps_network_registration_status_rsp_t param;
 		   opencpu_cereg_read(&param);
 		   opencpu_printf("+CEREG:%d,%d\n",param.active_time,param.periodic_tau);
-		
+
 		   uart_cmd = 0;
 	   }
 	  //设置psm
@@ -206,7 +205,7 @@ void test_all_in_one()
 	   	   psm_req1.req_gprs_rdy_tmr=NULL;
 	   	   psm_req1.req_prdc_tau="00101011";
 	   	   psm_req1.req_act_time="00100100";
-	 
+
 		   opencpu_set_psmparam(&psm_req1);
 		   uart_cmd = 0;
 		}
@@ -217,14 +216,14 @@ void test_all_in_one()
 	   	   opencpu_get_psmparam(&psm_rsp1);
 	   	   opencpu_printf("%d,%s,%s,%s,%s\n",psm_rsp1.mode,psm_rsp1.req_prdc_rau,
 	   	                  psm_rsp1.req_gprs_rdy_tmr,psm_rsp1.req_prdc_tau,psm_rsp1.req_act_time);
-	   	   
-	 
+
+
 		   uart_cmd = 0;
 		}
 		//测试IIC接口的BMP180传感器（需用户自己连接该外设）
           if(uart_cmd == '8')
 		{
-			
+
 			bmp180_test();
 			uart_cmd = 0;
 		}
@@ -239,18 +238,18 @@ void test_all_in_one()
 		 {
 			 int temp_type;
 			 unsigned char temp_value[10];
-             opencpu_read_edrx(&temp_type,temp_value);		
+             opencpu_read_edrx(&temp_type,temp_value);
              opencpu_printf("type:%d,value:%s\n",temp_type,temp_value);
-             uart_cmd = 0;			 
+             uart_cmd = 0;
 		 }
 		 //测试EDRX参数设置
 		 if(uart_cmd == 'e')
 		 {
 			 opencpu_set_edrx(1,5,"0101");
 			 opencpu_printf("edrx set ok\n");
-			 uart_cmd = 0;	
+			 uart_cmd = 0;
 		 }
-		 
+
 		 if(uart_cmd == '%')
 		 {
 			 opencpu_set_cmsysctrl(0, 2, 50, 300, 100, 800);
@@ -286,7 +285,7 @@ void test_all_in_one()
 		 }
 		 if(uart_cmd == '-')
         {
-          
+
            int x = 0;
            void *address = NULL;
             OC_DEBUG_CHANNEL = 1;

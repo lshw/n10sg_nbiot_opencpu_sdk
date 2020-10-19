@@ -1,5 +1,5 @@
 
-/************************************Êı¾İ½á¹¹·â×°********************************************************/
+/************************************æ•°æ®ç»“æ„å°è£…********************************************************/
 typedef struct{
 	char valid;			/*!< 0:invalid,1:valid,2:unknown status*/
 	uint32_t size;		/*!< assistant data length*/
@@ -22,133 +22,133 @@ typedef struct{
 	float altitude;		/*!< altidude*/
 }cmgnss_loc_t;
 
-/** GNSS¶¨Î»³É¹¦»Øµ÷º¯Êı*/
+/** GNSSå®šä½æˆåŠŸå›è°ƒå‡½æ•°*/
 typedef void (*cmiot_gnss_callback)(const cmgnss_loc_t* loc);
 
 
-/************************************GNSS½Ó¿Ú²¿·Ö********************************************************/
+/************************************GNSSæ¥å£éƒ¨åˆ†********************************************************/
 /**
- * \brief ÉèÖÃGNSS¶¨Î»Ä£Ê½
+ * \brief è®¾ç½®GNSSå®šä½æ¨¡å¼
  *
- * \param [in] mode 0£ºstandaloneÄ£Ê½£¬1£ºAGNSSÄ£Ê½
+ * \param [in] mode 0ï¼šstandaloneæ¨¡å¼ï¼Œ1ï¼šAGNSSæ¨¡å¼
  * \return true or false
  *
- * \details ±ØĞëÔÚGNSSÆô¶¯Ç°ÉèÖÃ£¬·ñÔò½«»áÉèÖÃÊ§°Ü¡£Ê¹ÓÃAGNSSÄ£Ê½Ê±±ØĞë±£Ö¤AGNSS¸¨ÖúÊı¾İÓĞĞ§£¬·ñÔò½«»áµøÂäµ½standaloneÄ£Ê½
+ * \details å¿…é¡»åœ¨GNSSå¯åŠ¨å‰è®¾ç½®ï¼Œå¦åˆ™å°†ä¼šè®¾ç½®å¤±è´¥ã€‚ä½¿ç”¨AGNSSæ¨¡å¼æ—¶å¿…é¡»ä¿è¯AGNSSè¾…åŠ©æ•°æ®æœ‰æ•ˆï¼Œå¦åˆ™å°†ä¼šè·Œè½åˆ°standaloneæ¨¡å¼
  */
 bool opencpu_gnss_set_mode(int mode);
 
 /**
- * \brief »ñÈ¡GNSS¶¨Î»Ä£Ê½
+ * \brief è·å–GNSSå®šä½æ¨¡å¼
  *
- * \return 0£ºstandaloneÄ£Ê½£¬1£ºAGNSSÄ£Ê½
+ * \return 0ï¼šstandaloneæ¨¡å¼ï¼Œ1ï¼šAGNSSæ¨¡å¼
  *
  * \details
  */
 int opencpu_gnss_get_mode(void);
 
 /**
- * \brief Æô¶¯GNSS
+ * \brief å¯åŠ¨GNSS
  *
  * \return true or false
- * \details Òì²½£¬¶¨Î»¿ªÆôºóÄ£×éÎŞ·¨½øÈëË¯Ãß£¬Í£Ö¹¶¨Î»ºóÄ£×é¿É½øÈëË¯Ãß
+ * \details å¼‚æ­¥ï¼Œå®šä½å¼€å¯åæ¨¡ç»„æ— æ³•è¿›å…¥ç¡çœ ï¼Œåœæ­¢å®šä½åæ¨¡ç»„å¯è¿›å…¥ç¡çœ 
  */
 bool opencpu_gnss_start(void);
 
 /**
- * \brief ¹Ø±ÕGNSS
+ * \brief å…³é—­GNSS
  *
  * \return true or false
- * \details Òì²½
+ * \details å¼‚æ­¥
  */
 bool opencpu_gnss_stop(void);
 
 /**
- * \brief »ñÈ¡GNSSÆô¶¯×´Ì¬
+ * \brief è·å–GNSSå¯åŠ¨çŠ¶æ€
  *
- * \return 0£ºGNSSÎ´Æô¶¯£¬1£ºGNSSÒÑÆô¶¯
+ * \return 0ï¼šGNSSæœªå¯åŠ¨ï¼Œ1ï¼šGNSSå·²å¯åŠ¨
  *
  * \details
  */
 bool opencpu_gnss_is_active(void);
 
 /**
- * \brief Àä/ÎÂ/ÈÈÆô¶¯GNSS
+ * \brief å†·/æ¸©/çƒ­å¯åŠ¨GNSS
  *
- * \param [in] rst 0£ºÀäÆô¶¯£¬1£ºÎÂÆô¶¯£¬2£ºÈÈÆô¶¯
+ * \param [in] rst 0ï¼šå†·å¯åŠ¨ï¼Œ1ï¼šæ¸©å¯åŠ¨ï¼Œ2ï¼šçƒ­å¯åŠ¨
  *
  * \return true or false
- * \details ±ØĞëÔÚGNSSÆô¶¯ºó²ÅÄÜÊ¹ÓÃ´Ë¹¦ÄÜ
+ * \details å¿…é¡»åœ¨GNSSå¯åŠ¨åæ‰èƒ½ä½¿ç”¨æ­¤åŠŸèƒ½
  */
 bool opencpu_gnss_reset(int rst);
 
 /**
- * \brief ÉèÖÃGNSS»Øµ÷º¯Êı£¬ÔÚGNSSÆô¶¯Ç°ÉèÖÃ
+ * \brief è®¾ç½®GNSSå›è°ƒå‡½æ•°ï¼Œåœ¨GNSSå¯åŠ¨å‰è®¾ç½®
  *
- * \param [in] callback »Øµ÷º¯Êı
+ * \param [in] callback å›è°ƒå‡½æ•°
  * \return true or false
  *
- * \details »Øµ÷º¯Êı½«»áÔÚ¶¨Î»³É¹¦ºó´¥·¢£¬Ã¿´Î¶¨Î»³É¹¦¾ù»á±»´¥·¢
+ * \details å›è°ƒå‡½æ•°å°†ä¼šåœ¨å®šä½æˆåŠŸåè§¦å‘ï¼Œæ¯æ¬¡å®šä½æˆåŠŸå‡ä¼šè¢«è§¦å‘
  */
 bool opencpu_gnss_set_callback(cmiot_gnss_callback callback);
 
 /**
- * \brief »ñÈ¡NMEAÊı¾İ
+ * \brief è·å–NMEAæ•°æ®
  *
- * \param [in] type NMEAÀàĞÍ£¬0-63
- * \param [in] nmea nmea´æ´¢£¬Ã¿Ìõnmea»º´æ200×Ö½ÚÒÔÉÏ
+ * \param [in] type NMEAç±»å‹ï¼Œ0-63
+ * \param [in] nmea nmeaå­˜å‚¨ï¼Œæ¯æ¡nmeaç¼“å­˜200å­—èŠ‚ä»¥ä¸Š
  *
  * \details GGA(0x1<<0) RMC(0x1<<1) GSV(0x1<<2) GSA(0x1<<3) VTG(0x1<<4) GLL(0x1<<5)
  */
 bool opencpu_gnss_get_nmea(int type, char* nmea);
 
 /**
- * \brief »ñÈ¡GNSS¶¨Î»ĞÅÏ¢
+ * \brief è·å–GNSSå®šä½ä¿¡æ¯
  *
- * \param [in] location Î»ÖÃĞÅÏ¢£¬½á¹¹Ìå·â×°
+ * \param [in] location ä½ç½®ä¿¡æ¯ï¼Œç»“æ„ä½“å°è£…
  * \return true or false
  *
- * \details ½öÔÚGNSS¿ªÆôÇÒ³É¹¦¶¨Î»Ö®ºó²Å¿É»ñÈ¡µ½Î»ÖÃĞÅÏ¢
+ * \details ä»…åœ¨GNSSå¼€å¯ä¸”æˆåŠŸå®šä½ä¹‹åæ‰å¯è·å–åˆ°ä½ç½®ä¿¡æ¯
  */
 bool opencpu_gnss_get_loc(cmgnss_loc_t* location);
 
 
-/************************************AGNSS½Ó¿Ú²¿·Ö********************************************************/
+/************************************AGNSSæ¥å£éƒ¨åˆ†********************************************************/
 
 /**
- * \brief ²éÑ¯AGNSS¸¨ÖúÊı¾İµÄÓĞĞ§ĞÔ
+ * \brief æŸ¥è¯¢AGNSSè¾…åŠ©æ•°æ®çš„æœ‰æ•ˆæ€§
  *
- * \param [in] data ´æ´¢²éÑ¯Êı¾İ£¬½á¹¹Ìå·â×°
+ * \param [in] data å­˜å‚¨æŸ¥è¯¢æ•°æ®ï¼Œç»“æ„ä½“å°è£…
  * \return true or false
  *
- * \details ¿ªÆôAGNSSÄ£Ê½Ç°Îñ±ØÅĞ¶ÏÊı¾İÊÇ·ñÓĞĞ§
+ * \details å¼€å¯AGNSSæ¨¡å¼å‰åŠ¡å¿…åˆ¤æ–­æ•°æ®æ˜¯å¦æœ‰æ•ˆ
  */
 bool opencpu_agnss_is_data_valid(cmagnss_data_t* data);
 
 /**
- * \brief ÊÖ¶¯¸üĞÂAGNSS¸¨ÖúÊı¾İ
+ * \brief æ‰‹åŠ¨æ›´æ–°AGNSSè¾…åŠ©æ•°æ®
  *
  * \return true or false
  *
- * \details ÊÖ¶¯´¥·¢¸üĞÂ£¬Ïò·şÎñÆ÷ÇëÇó¸¨ÖúÊı¾İ
+ * \details æ‰‹åŠ¨è§¦å‘æ›´æ–°ï¼Œå‘æœåŠ¡å™¨è¯·æ±‚è¾…åŠ©æ•°æ®
  */
 bool opencpu_agnss_manual_update(void);
 
 /**
- * \brief ÉèÖÃ×Ô¶¯¼ì²â¸üĞÂANGSS¸¨ÖúÊı¾İ
+ * \brief è®¾ç½®è‡ªåŠ¨æ£€æµ‹æ›´æ–°ANGSSè¾…åŠ©æ•°æ®
  *
- * \param [in] auto_enable 0£º½ûÖ¹×Ô¶¯¼ì²â¸üĞÂ£¨Ä¬ÈÏÖµ£©£¬1£ºÔÊĞí×Ô¶¯¼ì²â¸üĞÂ
- * \param [in] interval ¼ì²â¼ä¸ô£¬µ¥Î»£º·ÖÖÓ£¬·¶Î§£¨1-60£©
+ * \param [in] auto_enable 0ï¼šç¦æ­¢è‡ªåŠ¨æ£€æµ‹æ›´æ–°ï¼ˆé»˜è®¤å€¼ï¼‰ï¼Œ1ï¼šå…è®¸è‡ªåŠ¨æ£€æµ‹æ›´æ–°
+ * \param [in] interval æ£€æµ‹é—´éš”ï¼Œå•ä½ï¼šåˆ†é’Ÿï¼ŒèŒƒå›´ï¼ˆ1-60ï¼‰
  * \return true or false
  *
- * \details ÉèÖÃºó£¬ºóÌ¨³ÌĞòÃ¿¸ôinterval·ÖÖÓ¼ì²âÒ»´ÎÊı¾İ£¬ÈôÊ§Ğ§Ôò»áÁ¢¼´´¥·¢¸üĞÂ
+ * \details è®¾ç½®åï¼Œåå°ç¨‹åºæ¯éš”intervalåˆ†é’Ÿæ£€æµ‹ä¸€æ¬¡æ•°æ®ï¼Œè‹¥å¤±æ•ˆåˆ™ä¼šç«‹å³è§¦å‘æ›´æ–°
  */
 bool opencpu_agnss_set_auto_update(bool auto_enable, int interval);
 
 /**
- * \brief »ñÈ¡×Ô¶¯¼ì²â¸üĞÂ×´Ì¬
+ * \brief è·å–è‡ªåŠ¨æ£€æµ‹æ›´æ–°çŠ¶æ€
  *
- * \param [in] auto_enable 0£º½ûÖ¹×Ô¶¯¼ì²â¸üĞÂ£¨Ä¬ÈÏÖµ£©£¬1£ºÔÊĞí×Ô¶¯¼ì²â¸üĞÂ
- * \param [in] interval ¼ì²â¼ä¸ô£¬µ¥Î»£º·ÖÖÓ£¬·¶Î§£¨1-60£©
+ * \param [in] auto_enable 0ï¼šç¦æ­¢è‡ªåŠ¨æ£€æµ‹æ›´æ–°ï¼ˆé»˜è®¤å€¼ï¼‰ï¼Œ1ï¼šå…è®¸è‡ªåŠ¨æ£€æµ‹æ›´æ–°
+ * \param [in] interval æ£€æµ‹é—´éš”ï¼Œå•ä½ï¼šåˆ†é’Ÿï¼ŒèŒƒå›´ï¼ˆ1-60ï¼‰
  * \return true or false
  *
  * \details
@@ -156,19 +156,19 @@ bool opencpu_agnss_set_auto_update(bool auto_enable, int interval);
 bool opencpu_agnss_get_auto_update(bool* auto_enable, int* interval);
 
 /**
- * \brief ÉèÖÃAGNSS·şÎñÆ÷µØÖ·
+ * \brief è®¾ç½®AGNSSæœåŠ¡å™¨åœ°å€
  *
- * \param [in] url ·şÎñÆ÷µØÖ·
+ * \param [in] url æœåŠ¡å™¨åœ°å€
  * \return true or false
  *
- * \details ÈçÎŞÌØÊâĞèÇóÇëÎğÉèÖÃ´ËÏî
+ * \details å¦‚æ— ç‰¹æ®Šéœ€æ±‚è¯·å‹¿è®¾ç½®æ­¤é¡¹
  */
 bool opencpu_agnss_set_url(char* url);
 
 /**
- * \brief »ñÈ¡AGNSS·şÎñÆ÷µØÖ·
+ * \brief è·å–AGNSSæœåŠ¡å™¨åœ°å€
  *
- * \param [in] url ·şÎñÆ÷µØÖ·
+ * \param [in] url æœåŠ¡å™¨åœ°å€
  * \return true or false
  *
  * \details
@@ -176,90 +176,90 @@ bool opencpu_agnss_set_url(char* url);
 bool opencpu_agnss_get_url(char* url);
 
 
-/************************************µ÷ÊÔ½Ó¿Ú²¿·Ö********************************************************/
+/************************************è°ƒè¯•æ¥å£éƒ¨åˆ†********************************************************/
 /**
- * \brief »ñÈ¡½ÓÊÕµ½µÄGNSSÊı¾İ³¤¶È
+ * \brief è·å–æ¥æ”¶åˆ°çš„GNSSæ•°æ®é•¿åº¦
  *
- * \return Êı¾İ³¤¶È»ò´íÎó·µ»Ø-1
+ * \return æ•°æ®é•¿åº¦æˆ–é”™è¯¯è¿”å›-1
  *
- * \details ½öÔÚµ÷ÊÔÊ±Ê¹ÓÃ
+ * \details ä»…åœ¨è°ƒè¯•æ—¶ä½¿ç”¨
  */
 int opencpu_gnss_get_recv_len(void);
 
 /**
- * \brief »ñÈ¡½ÓÊÕµ½µÄGNSSÊı¾İ
+ * \brief è·å–æ¥æ”¶åˆ°çš„GNSSæ•°æ®
  *
- * \param [in] data Êı¾İ´æ´¢
- * \param [in] len Êı¾İ³¤¶È
- * \return Êµ¼Ê¶ÁÈ¡³¤¶È»ò´íÎó·µ»Ø-1
+ * \param [in] data æ•°æ®å­˜å‚¨
+ * \param [in] len æ•°æ®é•¿åº¦
+ * \return å®é™…è¯»å–é•¿åº¦æˆ–é”™è¯¯è¿”å›-1
  *
- * \details ½öÔÚµ÷ÊÔÊ±Ê¹ÓÃ
+ * \details ä»…åœ¨è°ƒè¯•æ—¶ä½¿ç”¨
  */
 int opencpu_gnss_get_recv_data(char* data, int len);
 
 /**
- * \brief ·¢ËÍÖ¸ÁîÖÁGNSSĞ¾Æ¬
+ * \brief å‘é€æŒ‡ä»¤è‡³GNSSèŠ¯ç‰‡
  *
- * \param [in] cmd Ö¸ÁîÄÚÈİ
- * \param [in] len Ö¸Áî³¤¶È
+ * \param [in] cmd æŒ‡ä»¤å†…å®¹
+ * \param [in] len æŒ‡ä»¤é•¿åº¦
  * \return true or false
  *
- * \details ½öÔÚµ÷ÊÔÊ±Ê¹ÓÃ
+ * \details ä»…åœ¨è°ƒè¯•æ—¶ä½¿ç”¨
  */
 bool opencpu_gnss_send_cmd(char* cmd, int len);
 
 /**
- * \brief ¿ØÖÆGNSSÊı¾İ½ÓÊÕÍ¸´«
+ * \brief æ§åˆ¶GNSSæ•°æ®æ¥æ”¶é€ä¼ 
  *
- * \param [in] debug 0£º½ûÖ¹½ÓÊÕÍ¸´«£¨Ä¬ÈÏÖµ£©£¬1£ºÔÊĞí½ÓÊÕÍ¸´«
- * \return 
+ * \param [in] debug 0ï¼šç¦æ­¢æ¥æ”¶é€ä¼ ï¼ˆé»˜è®¤å€¼ï¼‰ï¼Œ1ï¼šå…è®¸æ¥æ”¶é€ä¼ 
+ * \return
  *
- * \details ½öÔÚµ÷ÊÔÊ±Ê¹ÓÃ£¬¿ªÆôÍ¸´«ºó²»ÄÜÓÃAPI»ñÈ¡nmeaÊı¾İ¡¢¶¨Î»Êı¾İ£¬»Øµ÷º¯Êı²»ÄÜ´¥·¢
+ * \details ä»…åœ¨è°ƒè¯•æ—¶ä½¿ç”¨ï¼Œå¼€å¯é€ä¼ åä¸èƒ½ç”¨APIè·å–nmeaæ•°æ®ã€å®šä½æ•°æ®ï¼Œå›è°ƒå‡½æ•°ä¸èƒ½è§¦å‘
  */
 bool opencpu_gnss_set_debug(int debug);
 
 /**
- * \brief »ñÈ¡½ÓÊÕÍ¸´«×´Ì¬
+ * \brief è·å–æ¥æ”¶é€ä¼ çŠ¶æ€
  *
- * \return 0£º½ûÖ¹½ÓÊÕÍ¸´«£¨Ä¬ÈÏÖµ£©£¬1£ºÔÊĞí½ÓÊÕÍ¸´«
+ * \return 0ï¼šç¦æ­¢æ¥æ”¶é€ä¼ ï¼ˆé»˜è®¤å€¼ï¼‰ï¼Œ1ï¼šå…è®¸æ¥æ”¶é€ä¼ 
  *
- * \details ½öÔÚµ÷ÊÔÊ±Ê¹ÓÃ
+ * \details ä»…åœ¨è°ƒè¯•æ—¶ä½¿ç”¨
  */
 int opencpu_gnss_get_debug(void);
 
 
 
-/************************************Ê¹ÓÃÁ÷³Ì********************************************************/
+/************************************ä½¿ç”¨æµç¨‹********************************************************/
 /*
-1¡¢standaloneÄ£Ê½£º
-¢ÙÉèÖÃGNSS»Øµ÷º¯Êı
-¢ÚÆô¶¯GNSS
-¢Û»Øµ÷º¯Êı´¥·¢£¬¶¨Î»³É¹¦
-¢Ü¶ÁÈ¡¶¨Î»ĞÅÏ¢
-¢İ¹Ø±ÕGNSS
+1ã€standaloneæ¨¡å¼ï¼š
+â‘ è®¾ç½®GNSSå›è°ƒå‡½æ•°
+â‘¡å¯åŠ¨GNSS
+â‘¢å›è°ƒå‡½æ•°è§¦å‘ï¼Œå®šä½æˆåŠŸ
+â‘£è¯»å–å®šä½ä¿¡æ¯
+â‘¤å…³é—­GNSS
 */
 
 /*
-2¡¢agnssÄ£Ê½£º
-¢Ù¼ì²é¸¨ÖúÊı¾İµÄÓĞĞ§ĞÔ
-¢Ú¸üĞÂ¸¨ÖúÊı¾İ£¬²¢È·ÈÏ¸üĞÂ³É¹¦
-¢ÛÉèÖÃ¶¨Î»Ä£Ê½ÎªagnssÄ£Ê½
-¢ÜÉèÖÃ»Øµ÷º¯Êı
-¢İÆô¶¯GNSS
-¢Ş»Øµ÷º¯Êı´¥·¢£¬¶¨Î»³É¹¦
-¢ß»ñÈ¡¶¨Î»ĞÅÏ¢
-¢à¹Ø±ÕGNSS
+2ã€agnssæ¨¡å¼ï¼š
+â‘ æ£€æŸ¥è¾…åŠ©æ•°æ®çš„æœ‰æ•ˆæ€§
+â‘¡æ›´æ–°è¾…åŠ©æ•°æ®ï¼Œå¹¶ç¡®è®¤æ›´æ–°æˆåŠŸ
+â‘¢è®¾ç½®å®šä½æ¨¡å¼ä¸ºagnssæ¨¡å¼
+â‘£è®¾ç½®å›è°ƒå‡½æ•°
+â‘¤å¯åŠ¨GNSS
+â‘¥å›è°ƒå‡½æ•°è§¦å‘ï¼Œå®šä½æˆåŠŸ
+â‘¦è·å–å®šä½ä¿¡æ¯
+â‘§å…³é—­GNSS
 */
 
 /*
-3¡¢µ÷ÊÔÄ£Ê½£º
-¢ÙÆô¶¯GNSS
-¢ÚÉèÖÃ½ÓÊÕÍ¸´«
-¢Û»ñÈ¡GNSS½ÓÊÕÊı¾İ³¤¶È
-¢Ü¶ÁÈ¡GNSSÊı¾İ
-¢İ´®¿Ú´òÓ¡·ÖÎö
-¢ŞÖ¸Áî·¢³ö
-¢ß´Ó¢Û¿ªÊ¼Ñ­»·
-¢à¹Ø±ÕGNSS
+3ã€è°ƒè¯•æ¨¡å¼ï¼š
+â‘ å¯åŠ¨GNSS
+â‘¡è®¾ç½®æ¥æ”¶é€ä¼ 
+â‘¢è·å–GNSSæ¥æ”¶æ•°æ®é•¿åº¦
+â‘£è¯»å–GNSSæ•°æ®
+â‘¤ä¸²å£æ‰“å°åˆ†æ
+â‘¥æŒ‡ä»¤å‘å‡º
+â‘¦ä»â‘¢å¼€å§‹å¾ªç¯
+â‘§å…³é—­GNSS
 */
 

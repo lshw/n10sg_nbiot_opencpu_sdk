@@ -32,8 +32,8 @@ void opencpu_fota_event_cb(int event,int state)
                     opencpu_printf("report complete\n");
                     break;
                 default:
-                    break; 
-            }        
+                    break;
+            }
             break;
 		case 0://检测流程
 			switch(state)
@@ -87,15 +87,15 @@ void opencpu_fota_event_cb(int event,int state)
 					update_status = -1;
 				default:
 					break;
-					
+
 			}
 			break;
 		default:
-			break;		
-			
+			break;
+
 	}
-					
-	
+
+
 }
 unsigned long opencpu_fota_version_cb()
 {

@@ -6,23 +6,23 @@
  *  created by XieGangLiang 2019/09/06
  ********************************************************/
 #include "n10sg_opencpu.h"
- 
+
 void http_test()
-{    
+{
     char* url = "https://www.baidu.com/";
     httpclient_t client = {0};
     httpclient_data_t client_data = {0};
     char *buf = NULL;
     buf = pvPortMalloc(600);
-    if (buf == NULL) 
+    if (buf == NULL)
     {
         opencpu_printf("Malloc failed.\r\n");
         return;
     }
     memset(buf, 0, sizeof(buf));
-    client_data.response_buf = buf;  
+    client_data.response_buf = buf;
     client.timeout_in_sec = 20;
-    client_data.response_buf_len = 600;  
+    client_data.response_buf_len = 600;
     opencpu_printf("Data received: %d,\n%s\r\n", oc_httpclient_get(&client, url, &client_data),client_data.response_buf);
 }
 void http_test2()
@@ -33,7 +33,7 @@ void http_test2()
     HTTPCLIENT_RESULT ret = HTTPCLIENT_ERROR_CONN;
     char *buf = NULL;
     buf = pvPortMalloc(600);
-    if (buf == NULL) 
+    if (buf == NULL)
     {
         opencpu_printf("Malloc failed.\r\n");
         return;

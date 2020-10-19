@@ -13,7 +13,7 @@ void spi_test()
 	unsigned char spi_tx_buf[2]= {0};
 	unsigned char spi_tx = 5;
 
-	hal_spi_master_config_t l_config;   
+	hal_spi_master_config_t l_config;
 	hal_spi_master_send_and_receive_config_t spi_send_and_receive_config;
 	//配置SPI参数
 	l_config.bit_order = HAL_SPI_MASTER_MSB_FIRST;
