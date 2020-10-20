@@ -1,0 +1,437 @@
+<html>
+ <head>
+  <title>N10SG OPENCPU MANUAL.chm</title>
+  <LINK rel="Stylesheet" type="text/css" href="arch_css.css">
+</head>
+
+<body onload="setInterval('getLoc()', 500);">    
+<script>
+var lastDoc;
+var contents = 
+[
+ ["Modules", "modules.html", "1", 
+   ["SDK_TIPS", "group___s_d_k___t_i_p_s.html", "11"], 
+   ["FUNCTIONS", "group___f_u_n_c_t_i_o_n_s.html", "1", 
+     ["BASE_FUNCTIONS", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_log", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga6740cce5a950af63088d10e1229772c5", "11"], 
+       ["get_band_version", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gafe93efb1b147849f2cc9fbf4bb7d3158", "11"], 
+       ["get_factory_mode", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga527bbf1dc4ac846a9f37ca64cc1cdb91", "11"], 
+       ["get_run_mode", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga95423ddab4eb26a8bdd1a028771a3bb3", "11"], 
+       ["opencpu_cereg_excute", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaa981849f292f84c267eec49a0a19ec1d", "11"], 
+       ["opencpu_cereg_read", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad1bd35f7e333795f2c33e4b08c509bc5", "11"], 
+       ["opencpu_cfun_excute", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga9f0e89cb25f882668fa30625ce1aa764", "11"], 
+       ["opencpu_cfun_read", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga6dbbfff7f63f7812569d8e912ac54013", "11"], 
+       ["opencpu_cgact", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga5ae0aa4d47f85ff7e1aed61acaab0e14", "11"], 
+       ["opencpu_changebaud", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad69e5f68d08090a5b8330dfff7ee7718", "11"], 
+       ["opencpu_clplmn", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga6a4b85a1696e52b30f0a6c49ba04b585", "11"], 
+       ["opencpu_cmntp", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga1f30533c624f6db2c3437045fa9186e4", "11"], 
+       ["opencpu_csq", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gae029e08bad6ea94f14311e019f01ba44", "11"], 
+       ["opencpu_delay_ms", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gac63c89885113b07f7464bf6def6b9252", "11"], 
+       ["opencpu_delay_us", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga06b31719fd50ffea699438b9ec07fec9", "11"], 
+       ["opencpu_entersleep_mode", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaf5fa62096fe2af060fd01c4d34826b74", "11"], 
+       ["opencpu_frcllck", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gae1054de50fe71c8ed3042edcd5fafcd8", "11"], 
+       ["opencpu_get_base_version", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga2f057021d76d3890374f7de84b6d77c9", "11"], 
+       ["opencpu_get_cmsysctrl", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga5a17ca48be4aeaec999250c2d49927d0", "11"], 
+       ["opencpu_get_eid", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga27696f4e8ff1b35644666a732c3bbafc", "11"], 
+       ["opencpu_get_imei", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga9d247894c275a15d7a8979e77b98789c", "11"], 
+       ["opencpu_get_imsi", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad1646477cab1535f682d19c0aef32c67", "11"], 
+       ["opencpu_get_psmparam", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga3578d387aa1433624fce67b1e009cff4", "11"], 
+       ["opencpu_iccid", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaabea99001e84020c4d1a9ab051ed90c9", "11"], 
+       ["opencpu_is_boot_from_sleep", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gac35982c7377fe5186da7c943d3912380", "11"], 
+       ["opencpu_lock_light_sleep", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gadea5589ea4f25e16702ca37923fb8c0c", "11"], 
+       ["opencpu_read_bak_imei", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga4ec5b17fd910ef340b4bd6ab3ea1a0d6", "11"], 
+       ["opencpu_read_edrx", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga276db3f16bfa0b71d82fa70c24e9d42c", "11"], 
+       ["opencpu_read_edrxrdp", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga8836c4e1793d4b9339635bcf79e611f6", "11"], 
+       ["opencpu_read_port_config", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga85e67831f414ba2c8dcb056dd3d009db", "11"], 
+       ["opencpu_reboot", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad41e382b140747b81e04173dccc108ad", "11"], 
+       ["opencpu_set_cmsysctrl", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga6d00fedf250c15ba84ef879801ef5ffc", "11"], 
+       ["opencpu_set_edrx", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaeee164d943233cbdfd131bb05b27996f", "11"], 
+       ["opencpu_set_psmparam", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga5b9ba3e44e7eeb7f727f323f44a75ca2", "11"], 
+       ["opencpu_unlock_light_sleep", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gac2429f81bb79a812e2be4abbaae6db9e", "11"], 
+       ["opencpu_waketime_set", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gab7a5b6d46bafc8eafe7218d3d2f4714d", "11"], 
+       ["opencpu_wakeup_callback", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaff62f2d3192db36b21a525b6678edc08", "11"], 
+       ["opencpu_write_imei_custom", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga765a6d9f8fde8b247b0c2800dc1bc5c0", "11"], 
+       ["opencpu_write_port_config", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga98052a000b1cd37c585a11b2f32c82bd", "11"], 
+       ["opencpu_write_prod_imei", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga18ec1ba085934f2501366dc19e0f392b", "11"]], 
+     ["DM_FUNCTIONS", "group___d_m___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_dm_set_mode", "group___d_m___f_u_n_c_t_i_o_n_s.html#ga8e76af1bae9d9c1b9ffd606afc5668e5", "11"], 
+       ["opencpu_dm_start", "group___d_m___f_u_n_c_t_i_o_n_s.html#ga79b3e267769ef77d823ad6b3947683a9", "11"], 
+       ["opencpu_dm_stop", "group___d_m___f_u_n_c_t_i_o_n_s.html#gad7f5b7962581ccf6dbfc269b8c2cb8fd", "11"], 
+       ["opencpu_dm_update", "group___d_m___f_u_n_c_t_i_o_n_s.html#ga28b93db3d6e62aebe087eba28fe3c1fa", "11"]], 
+     ["FOTA_FUNCTIONS", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_fota_event_cb", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gaaed0118795618721a10300895c10ac99", "11"], 
+       ["opencpu_fota_get_report_param", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gad5298f2476823587c2fa944d47f58dc6", "11"], 
+       ["opencpu_fota_progress_cb", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gadfa06e7b3aad1db80b5599ad274c7ba2", "11"], 
+       ["opencpu_fota_set_report_param", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gaaaca3e40eb5eadc1b630bf0f5563f3ea", "11"], 
+       ["opencpu_fota_try_download", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#ga4405cddce91bb2503714c1e02c7b302a", "11"], 
+       ["opencpu_fota_update", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#ga14f36cbc5b6a47fedb93167bf2fa0c6a", "11"], 
+       ["opencpu_fota_version_cb", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gad51c2e1e13536d85e87444420a6df42e", "11"]], 
+     ["UART_FUNCTIONS", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_uart_close", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#gae56e5c51c7fde84813c2a1306d11a105", "11"], 
+       ["opencpu_uart_get_available_receive_bytes", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#gaeb8b5364c25dbf717d4601132eccd73c", "11"], 
+       ["opencpu_uart_open", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#ga858e65b5fd15dd01bf734df4074163b5", "11"], 
+       ["opencpu_uart_open_custom", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#ga450a1fc73b53fd2f99c37272fdee18b5", "11"], 
+       ["opencpu_uart_receive", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#ga3236acd98f03f8d99cb8371556e366ee", "11"], 
+       ["opencpu_uart_send", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#ga3dd2dffa74db81dee416209fdf426aa7", "11"]], 
+     ["NETWORK_FUNCTIONS", "group___n_e_t_w_o_r_k___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_get_host_by_name", "group___n_e_t_w_o_r_k___f_u_n_c_t_i_o_n_s.html#ga5b347e7996e54771450981de0d7e003e", "11"], 
+       ["opencpu_ping", "group___n_e_t_w_o_r_k___f_u_n_c_t_i_o_n_s.html#gab9389b81d76f40cdc9c2defd811177bb", "11"]], 
+     ["FLASH_FUNCTIONS", "group___f_l_a_s_h___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_flash_erase", "group___f_l_a_s_h___f_u_n_c_t_i_o_n_s.html#gaa0f1c2406b4efb03e6acddf7712bf39e", "11"], 
+       ["opencpu_flash_read", "group___f_l_a_s_h___f_u_n_c_t_i_o_n_s.html#gabd99e15597ee916c9a39c32cc5fae54e", "11"], 
+       ["opencpu_flash_write", "group___f_l_a_s_h___f_u_n_c_t_i_o_n_s.html#gab6ecd708a06c977f16e1c3c29e023190", "11"]], 
+     ["RTC_FUNCTIONS", "group___r_t_c___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_rtc_get_time", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gad1e58d825b94328458e0bc702b39a92f", "11"], 
+       ["opencpu_rtc_set_time", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gac829c573b0740eb55123c4c37a37220e", "11"], 
+       ["opencpu_rtc_timer_create", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gaa9b82461a187871cdaee11eeb70b9210", "11"], 
+       ["opencpu_rtc_timer_delete", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#ga26d4dcd62b30f47047d2c6c1eb348d33", "11"], 
+       ["opencpu_rtc_timer_start", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gafb3ce581542a38f781a27045ed65418b", "11"], 
+       ["opencpu_rtc_timer_stop", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gaac85cfc817d627fc6856444342ab46bc", "11"]], 
+     ["ADC_FUNCTIONS", "group___a_d_c___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_adc", "group___a_d_c___f_u_n_c_t_i_o_n_s.html#gae84b0e64bc72ea1072dadb3d8fa34e48", "11"]], 
+     ["PWM_FUNCTIONS", "group___p_w_m___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_pwm_deinit", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#gad415e8075ef3024ccc32a8e1684a8df2", "11"], 
+       ["opencpu_pwm_init", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#ga1b1051865f12ab659611e5b27caf17e1", "11"], 
+       ["opencpu_pwm_set_duty_cycle", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#ga571ccef8e89e11f2e578dd9ff865ab2e", "11"], 
+       ["opencpu_pwm_set_frequency", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#gada1a04ea981b4c46c94cd0d0af8407a0", "11"], 
+       ["opencpu_pwm_start", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#ga4410e33ca0369b65661ecba1ed937640", "11"], 
+       ["opencpu_pwm_stop", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#ga8a9bac47cab48994c84b5dd6b9a8621a", "11"]], 
+     ["SPI_FUNCTIONS", "group___s_p_i___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_spi_deinit", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gaaeb491736b78f1a80944ff422835a183", "11"], 
+       ["opencpu_spi_init", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga895dff6dee1c78f631a7adf1ae9fd2ea", "11"], 
+       ["opencpu_spi_init_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gab83d55447f92d42aff4beca836e80a3a", "11"], 
+       ["opencpu_spi_read", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gaa8ff56443d7a563982886b672858b2b9", "11"], 
+       ["opencpu_spi_read_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gac5ca49f48f840e8f765806ec1b45d723", "11"], 
+       ["opencpu_spi_rw", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga9b184a641e5c4036051cef8a636397b1", "11"], 
+       ["opencpu_spi_write", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga1c8b1e6071da463a8634ed3f66dd56b8", "11"], 
+       ["opencpu_spi_write_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gad76db1aacb16493f198a6698b4d201b3", "11"], 
+       ["opencpu_spi_write_read_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga567fad7df82b8155af15e0a5221e6745", "11"], 
+       ["openpcu_spi_deinit_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga8a79f4202d5f483de5d620aafca721b3", "11"]], 
+     ["GNSS_FUNCTIONS", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_agnss_get_auto_update", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga4bdf11d32184bca461b1ddec70bf404a", "11"], 
+       ["opencpu_agnss_get_url", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gad93917c4bdd585c39e850af34986486b", "11"], 
+       ["opencpu_agnss_is_data_valid", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga51ae96312ec5378d8cd55cb5675784a2", "11"], 
+       ["opencpu_agnss_manual_update", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gaa00e2fd7923d986af5d9909fe7169a49", "11"], 
+       ["opencpu_agnss_set_auto_update", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga269c320cd9dde92b83f3d1614b89622e", "11"], 
+       ["opencpu_agnss_set_url", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga35eeb8c165bdbe143d961207324bba2d", "11"], 
+       ["opencpu_gnss_get_debug", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga9b3eb854797d0046922e887aecc4280b", "11"], 
+       ["opencpu_gnss_get_loc", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga8f25a24858f46ea2acbc6ef82b21b802", "11"], 
+       ["opencpu_gnss_get_mode", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga71dca3d06b70586af134e88cfecf4efa", "11"], 
+       ["opencpu_gnss_get_nmea", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gaf726501a9f750f4d78ad2622a1e44a64", "11"], 
+       ["opencpu_gnss_get_recv_data", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gadc0b4f80d6c4530d8a350634225c925e", "11"], 
+       ["opencpu_gnss_get_recv_len", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gab4a3aa835c9e881797c040f1b20ea235", "11"], 
+       ["opencpu_gnss_is_active", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga1063c3b6b00b03afd0fdd661cfaf9828", "11"], 
+       ["opencpu_gnss_reset", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gad468ac3135470f214bce9a9f50c11eac", "11"], 
+       ["opencpu_gnss_send_cmd", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gafcd0e3d0a228fbcec627494952a4b895", "11"], 
+       ["opencpu_gnss_set_callback", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga00348dfa569fc8cf7e7e928af196ea77", "11"], 
+       ["opencpu_gnss_set_debug", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga5cd3227229d16d1b5855362d38958070", "11"], 
+       ["opencpu_gnss_set_mode", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gabe130ebb352229a90415c721e421dd11", "11"], 
+       ["opencpu_gnss_start", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gaaf51745773548e3921991018c0c86d82", "11"], 
+       ["opencpu_gnss_stop", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gae4b5f01fdcd25439a1044c2eae168a30", "11"]], 
+     ["I2C_FUNCTIONS", "group___i2_c___f_u_n_c_t_i_o_n_s.html", "1", 
+       ["opencpu_i2c_deinit", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga69ef4d5237ca4a1afbc0ffef80bae20a", "11"], 
+       ["opencpu_i2c_deinit_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga2cf61cb9b8f626d6df23d0d4ec3b359a", "11"], 
+       ["opencpu_i2c_get_freq", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga7cf8f470c5d149a34f36cd8943c1140d", "11"], 
+       ["opencpu_i2c_init", "group___i2_c___f_u_n_c_t_i_o_n_s.html#gad0b721dccbf08401343299f9fc46a7b2", "11"], 
+       ["opencpu_i2c_init_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga894e768a6049fbdf003ff36fa917175a", "11"], 
+       ["opencpu_i2c_read", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga3cd6a89bd5580927906017d85da34a7d", "11"], 
+       ["opencpu_i2c_read_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga6db4f2024ce7bf8a108a36194019dac0", "11"], 
+       ["opencpu_i2c_set_freq", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga76f4715167015fae34faf779ac703726", "11"], 
+       ["opencpu_i2c_write", "group___i2_c___f_u_n_c_t_i_o_n_s.html#gaf5fd4330d176c22d1abcebd69bfb2958", "11"], 
+       ["opencpu_i2c_write_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga70a8fac5ffff85a1a763383432180464", "11"], 
+       ["opencpu_i2c_write_read", "group___i2_c___f_u_n_c_t_i_o_n_s.html#gad3b7d94e51e9e59f9222109d20f69b98", "11"], 
+       ["opencpu_i2c_write_read_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#gab014e74736e0be73138d60ca708633d5", "11"]], 
+     ["GPIO_FUNCTIONS", "group___g_p_i_o___f_u_n_c_t_i_o_n_s.html", "11"], 
+     ["RTOS_INTRODUCTION", "group___r_t_o_s___i_n_t_r_o_d_u_c_t_i_o_n.html", "1", 
+       ["opencpu_stack_overflow_hook", "group___r_t_o_s___i_n_t_r_o_d_u_c_t_i_o_n.html#gad16f7819a120fbffc84e446cd3d056ba", "11"], 
+       ["opencpu_task_idle_hook", "group___r_t_o_s___i_n_t_r_o_d_u_c_t_i_o_n.html#ga1a8dcd5b59409f9cf87578a57bddfafd", "11"], 
+       ["vApplicationTickHook", "group___r_t_o_s___i_n_t_r_o_d_u_c_t_i_o_n.html#ga9ca051aa77e17583aa5a85d5de5c199a", "11"]]]], 
+ ["Files", "files.html", "1", 
+   ["File List", "files.html", "1", 
+     ["opencpu_api.h", "opencpu__api_8h.html", "1", 
+       ["opencpu_log", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga6740cce5a950af63088d10e1229772c5", "11"], 
+       ["get_band_version", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gafe93efb1b147849f2cc9fbf4bb7d3158", "11"], 
+       ["get_factory_mode", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga527bbf1dc4ac846a9f37ca64cc1cdb91", "11"], 
+       ["get_run_mode", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga95423ddab4eb26a8bdd1a028771a3bb3", "11"], 
+       ["opencpu_adc", "group___a_d_c___f_u_n_c_t_i_o_n_s.html#gae84b0e64bc72ea1072dadb3d8fa34e48", "11"], 
+       ["opencpu_agnss_get_auto_update", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga4bdf11d32184bca461b1ddec70bf404a", "11"], 
+       ["opencpu_agnss_get_url", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gad93917c4bdd585c39e850af34986486b", "11"], 
+       ["opencpu_agnss_is_data_valid", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga51ae96312ec5378d8cd55cb5675784a2", "11"], 
+       ["opencpu_agnss_manual_update", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gaa00e2fd7923d986af5d9909fe7169a49", "11"], 
+       ["opencpu_agnss_set_auto_update", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga269c320cd9dde92b83f3d1614b89622e", "11"], 
+       ["opencpu_agnss_set_url", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga35eeb8c165bdbe143d961207324bba2d", "11"], 
+       ["opencpu_cereg_excute", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaa981849f292f84c267eec49a0a19ec1d", "11"], 
+       ["opencpu_cereg_read", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad1bd35f7e333795f2c33e4b08c509bc5", "11"], 
+       ["opencpu_cfun_excute", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga9f0e89cb25f882668fa30625ce1aa764", "11"], 
+       ["opencpu_cfun_read", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga6dbbfff7f63f7812569d8e912ac54013", "11"], 
+       ["opencpu_cgact", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga5ae0aa4d47f85ff7e1aed61acaab0e14", "11"], 
+       ["opencpu_changebaud", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad69e5f68d08090a5b8330dfff7ee7718", "11"], 
+       ["opencpu_clplmn", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga6a4b85a1696e52b30f0a6c49ba04b585", "11"], 
+       ["opencpu_cmntp", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga1f30533c624f6db2c3437045fa9186e4", "11"], 
+       ["opencpu_csq", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gae029e08bad6ea94f14311e019f01ba44", "11"], 
+       ["opencpu_delay_ms", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gac63c89885113b07f7464bf6def6b9252", "11"], 
+       ["opencpu_delay_us", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga06b31719fd50ffea699438b9ec07fec9", "11"], 
+       ["opencpu_dm_set_mode", "group___d_m___f_u_n_c_t_i_o_n_s.html#ga8e76af1bae9d9c1b9ffd606afc5668e5", "11"], 
+       ["opencpu_dm_start", "group___d_m___f_u_n_c_t_i_o_n_s.html#ga79b3e267769ef77d823ad6b3947683a9", "11"], 
+       ["opencpu_dm_stop", "group___d_m___f_u_n_c_t_i_o_n_s.html#gad7f5b7962581ccf6dbfc269b8c2cb8fd", "11"], 
+       ["opencpu_dm_update", "group___d_m___f_u_n_c_t_i_o_n_s.html#ga28b93db3d6e62aebe087eba28fe3c1fa", "11"], 
+       ["opencpu_entersleep_mode", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaf5fa62096fe2af060fd01c4d34826b74", "11"], 
+       ["opencpu_flash_erase", "group___f_l_a_s_h___f_u_n_c_t_i_o_n_s.html#gaa0f1c2406b4efb03e6acddf7712bf39e", "11"], 
+       ["opencpu_flash_read", "group___f_l_a_s_h___f_u_n_c_t_i_o_n_s.html#gabd99e15597ee916c9a39c32cc5fae54e", "11"], 
+       ["opencpu_flash_write", "group___f_l_a_s_h___f_u_n_c_t_i_o_n_s.html#gab6ecd708a06c977f16e1c3c29e023190", "11"], 
+       ["opencpu_fota_event_cb", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gaaed0118795618721a10300895c10ac99", "11"], 
+       ["opencpu_fota_get_report_param", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gad5298f2476823587c2fa944d47f58dc6", "11"], 
+       ["opencpu_fota_progress_cb", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gadfa06e7b3aad1db80b5599ad274c7ba2", "11"], 
+       ["opencpu_fota_set_report_param", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gaaaca3e40eb5eadc1b630bf0f5563f3ea", "11"], 
+       ["opencpu_fota_try_download", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#ga4405cddce91bb2503714c1e02c7b302a", "11"], 
+       ["opencpu_fota_update", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#ga14f36cbc5b6a47fedb93167bf2fa0c6a", "11"], 
+       ["opencpu_fota_version_cb", "group___f_o_t_a___f_u_n_c_t_i_o_n_s.html#gad51c2e1e13536d85e87444420a6df42e", "11"], 
+       ["opencpu_frcllck", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gae1054de50fe71c8ed3042edcd5fafcd8", "11"], 
+       ["opencpu_get_base_version", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga2f057021d76d3890374f7de84b6d77c9", "11"], 
+       ["opencpu_get_cmsysctrl", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga5a17ca48be4aeaec999250c2d49927d0", "11"], 
+       ["opencpu_get_eid", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga27696f4e8ff1b35644666a732c3bbafc", "11"], 
+       ["opencpu_get_host_by_name", "group___n_e_t_w_o_r_k___f_u_n_c_t_i_o_n_s.html#ga5b347e7996e54771450981de0d7e003e", "11"], 
+       ["opencpu_get_imei", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga9d247894c275a15d7a8979e77b98789c", "11"], 
+       ["opencpu_get_imsi", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad1646477cab1535f682d19c0aef32c67", "11"], 
+       ["opencpu_get_psmparam", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga3578d387aa1433624fce67b1e009cff4", "11"], 
+       ["opencpu_gnss_get_debug", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga9b3eb854797d0046922e887aecc4280b", "11"], 
+       ["opencpu_gnss_get_loc", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga8f25a24858f46ea2acbc6ef82b21b802", "11"], 
+       ["opencpu_gnss_get_mode", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga71dca3d06b70586af134e88cfecf4efa", "11"], 
+       ["opencpu_gnss_get_nmea", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gaf726501a9f750f4d78ad2622a1e44a64", "11"], 
+       ["opencpu_gnss_get_recv_data", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gadc0b4f80d6c4530d8a350634225c925e", "11"], 
+       ["opencpu_gnss_get_recv_len", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gab4a3aa835c9e881797c040f1b20ea235", "11"], 
+       ["opencpu_gnss_is_active", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga1063c3b6b00b03afd0fdd661cfaf9828", "11"], 
+       ["opencpu_gnss_reset", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gad468ac3135470f214bce9a9f50c11eac", "11"], 
+       ["opencpu_gnss_send_cmd", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gafcd0e3d0a228fbcec627494952a4b895", "11"], 
+       ["opencpu_gnss_set_callback", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga00348dfa569fc8cf7e7e928af196ea77", "11"], 
+       ["opencpu_gnss_set_debug", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#ga5cd3227229d16d1b5855362d38958070", "11"], 
+       ["opencpu_gnss_set_mode", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gabe130ebb352229a90415c721e421dd11", "11"], 
+       ["opencpu_gnss_start", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gaaf51745773548e3921991018c0c86d82", "11"], 
+       ["opencpu_gnss_stop", "group___g_n_s_s___f_u_n_c_t_i_o_n_s.html#gae4b5f01fdcd25439a1044c2eae168a30", "11"], 
+       ["opencpu_i2c_deinit", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga69ef4d5237ca4a1afbc0ffef80bae20a", "11"], 
+       ["opencpu_i2c_deinit_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga2cf61cb9b8f626d6df23d0d4ec3b359a", "11"], 
+       ["opencpu_i2c_get_freq", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga7cf8f470c5d149a34f36cd8943c1140d", "11"], 
+       ["opencpu_i2c_init", "group___i2_c___f_u_n_c_t_i_o_n_s.html#gad0b721dccbf08401343299f9fc46a7b2", "11"], 
+       ["opencpu_i2c_init_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga894e768a6049fbdf003ff36fa917175a", "11"], 
+       ["opencpu_i2c_read", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga3cd6a89bd5580927906017d85da34a7d", "11"], 
+       ["opencpu_i2c_read_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga6db4f2024ce7bf8a108a36194019dac0", "11"], 
+       ["opencpu_i2c_set_freq", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga76f4715167015fae34faf779ac703726", "11"], 
+       ["opencpu_i2c_write", "group___i2_c___f_u_n_c_t_i_o_n_s.html#gaf5fd4330d176c22d1abcebd69bfb2958", "11"], 
+       ["opencpu_i2c_write_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#ga70a8fac5ffff85a1a763383432180464", "11"], 
+       ["opencpu_i2c_write_read", "group___i2_c___f_u_n_c_t_i_o_n_s.html#gad3b7d94e51e9e59f9222109d20f69b98", "11"], 
+       ["opencpu_i2c_write_read_ex", "group___i2_c___f_u_n_c_t_i_o_n_s.html#gab014e74736e0be73138d60ca708633d5", "11"], 
+       ["opencpu_iccid", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaabea99001e84020c4d1a9ab051ed90c9", "11"], 
+       ["opencpu_is_boot_from_sleep", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gac35982c7377fe5186da7c943d3912380", "11"], 
+       ["opencpu_lock_light_sleep", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gadea5589ea4f25e16702ca37923fb8c0c", "11"], 
+       ["opencpu_ping", "group___n_e_t_w_o_r_k___f_u_n_c_t_i_o_n_s.html#gab9389b81d76f40cdc9c2defd811177bb", "11"], 
+       ["opencpu_pwm_deinit", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#gad415e8075ef3024ccc32a8e1684a8df2", "11"], 
+       ["opencpu_pwm_init", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#ga1b1051865f12ab659611e5b27caf17e1", "11"], 
+       ["opencpu_pwm_set_duty_cycle", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#ga571ccef8e89e11f2e578dd9ff865ab2e", "11"], 
+       ["opencpu_pwm_set_frequency", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#gada1a04ea981b4c46c94cd0d0af8407a0", "11"], 
+       ["opencpu_pwm_start", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#ga4410e33ca0369b65661ecba1ed937640", "11"], 
+       ["opencpu_pwm_stop", "group___p_w_m___f_u_n_c_t_i_o_n_s.html#ga8a9bac47cab48994c84b5dd6b9a8621a", "11"], 
+       ["opencpu_read_bak_imei", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga4ec5b17fd910ef340b4bd6ab3ea1a0d6", "11"], 
+       ["opencpu_read_edrx", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga276db3f16bfa0b71d82fa70c24e9d42c", "11"], 
+       ["opencpu_read_edrxrdp", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga8836c4e1793d4b9339635bcf79e611f6", "11"], 
+       ["opencpu_read_port_config", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga85e67831f414ba2c8dcb056dd3d009db", "11"], 
+       ["opencpu_reboot", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad41e382b140747b81e04173dccc108ad", "11"], 
+       ["opencpu_rtc_get_time", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gad1e58d825b94328458e0bc702b39a92f", "11"], 
+       ["opencpu_rtc_set_time", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gac829c573b0740eb55123c4c37a37220e", "11"], 
+       ["opencpu_rtc_timer_create", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gaa9b82461a187871cdaee11eeb70b9210", "11"], 
+       ["opencpu_rtc_timer_delete", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#ga26d4dcd62b30f47047d2c6c1eb348d33", "11"], 
+       ["opencpu_rtc_timer_start", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gafb3ce581542a38f781a27045ed65418b", "11"], 
+       ["opencpu_rtc_timer_stop", "group___r_t_c___f_u_n_c_t_i_o_n_s.html#gaac85cfc817d627fc6856444342ab46bc", "11"], 
+       ["opencpu_set_cmsysctrl", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga6d00fedf250c15ba84ef879801ef5ffc", "11"], 
+       ["opencpu_set_edrx", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaeee164d943233cbdfd131bb05b27996f", "11"], 
+       ["opencpu_set_psmparam", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga5b9ba3e44e7eeb7f727f323f44a75ca2", "11"], 
+       ["opencpu_spi_deinit", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gaaeb491736b78f1a80944ff422835a183", "11"], 
+       ["opencpu_spi_init", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga895dff6dee1c78f631a7adf1ae9fd2ea", "11"], 
+       ["opencpu_spi_init_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gab83d55447f92d42aff4beca836e80a3a", "11"], 
+       ["opencpu_spi_read", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gaa8ff56443d7a563982886b672858b2b9", "11"], 
+       ["opencpu_spi_read_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gac5ca49f48f840e8f765806ec1b45d723", "11"], 
+       ["opencpu_spi_rw", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga9b184a641e5c4036051cef8a636397b1", "11"], 
+       ["opencpu_spi_write", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga1c8b1e6071da463a8634ed3f66dd56b8", "11"], 
+       ["opencpu_spi_write_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#gad76db1aacb16493f198a6698b4d201b3", "11"], 
+       ["opencpu_spi_write_read_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga567fad7df82b8155af15e0a5221e6745", "11"], 
+       ["opencpu_stack_overflow_hook", "group___r_t_o_s___i_n_t_r_o_d_u_c_t_i_o_n.html#gad16f7819a120fbffc84e446cd3d056ba", "11"], 
+       ["opencpu_task_idle_hook", "group___r_t_o_s___i_n_t_r_o_d_u_c_t_i_o_n.html#ga1a8dcd5b59409f9cf87578a57bddfafd", "11"], 
+       ["opencpu_uart_close", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#gae56e5c51c7fde84813c2a1306d11a105", "11"], 
+       ["opencpu_uart_get_available_receive_bytes", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#gaeb8b5364c25dbf717d4601132eccd73c", "11"], 
+       ["opencpu_uart_open", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#ga858e65b5fd15dd01bf734df4074163b5", "11"], 
+       ["opencpu_uart_open_custom", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#ga450a1fc73b53fd2f99c37272fdee18b5", "11"], 
+       ["opencpu_uart_receive", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#ga3236acd98f03f8d99cb8371556e366ee", "11"], 
+       ["opencpu_uart_send", "group___u_a_r_t___f_u_n_c_t_i_o_n_s.html#ga3dd2dffa74db81dee416209fdf426aa7", "11"], 
+       ["opencpu_unlock_light_sleep", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gac2429f81bb79a812e2be4abbaae6db9e", "11"], 
+       ["opencpu_waketime_set", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gab7a5b6d46bafc8eafe7218d3d2f4714d", "11"], 
+       ["opencpu_wakeup_callback", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaff62f2d3192db36b21a525b6678edc08", "11"], 
+       ["opencpu_write_imei_custom", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga765a6d9f8fde8b247b0c2800dc1bc5c0", "11"], 
+       ["opencpu_write_port_config", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga98052a000b1cd37c585a11b2f32c82bd", "11"], 
+       ["opencpu_write_prod_imei", "group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga18ec1ba085934f2501366dc19e0f392b", "11"], 
+       ["openpcu_spi_deinit_ex", "group___s_p_i___f_u_n_c_t_i_o_n_s.html#ga8a79f4202d5f483de5d620aafca721b3", "11"], 
+       ["vApplicationTickHook", "group___r_t_o_s___i_n_t_r_o_d_u_c_t_i_o_n.html#ga9ca051aa77e17583aa5a85d5de5c199a", "11"]]], 
+   ["File Members", "globals.html", "11", 
+     ["All", "globals.html", "11"], 
+     ["Functions", "globals_func.html", "11"], 
+     ["Macros", "globals_defs.html", "11"]]]
+];
+
+var w=window,d=document
+var icons={'0'  : 'icons/0.gif','1'  : 'icons/90.gif',
+        '2'  : 'icons/91.gif', '3'  : 'icons/92.gif', '4'  : 'icons/99.gif',
+        '18' : 'icons/93.gif', '19' : 'icons/94.gif', '20' : 'icons/97.gif',
+        '26' : 'icons/95.gif', '27' : 'icons/96.gif', '28' : 'icons/98.gif'}
+
+var dhtml=true
+try{if(d.body.innerHTML.length<=0)dhtml=false}
+catch(e){dhtml=false;}
+var tree=[];
+
+get_element=d.all ? 
+     function(id){return d.all[id]}
+     : 
+     function(id){return d.getElementById(id)}
+
+function get_img1(){
+    return icons[((this.childs.length ? 16 : 0)+(this.childs.length && this.opened ? 8 : 0)+(this.is_last()? 1 : 0)+(this.is_first()? 2 : 0)+2)]
+}
+function get_img2(){
+    n=this.cnt[2]
+    if(n<9){    
+	n=(this.opened ? ( n%2 ? parseInt(n)+1 : n ) : ( n%2 ? n : parseInt(n)-1 ))
+    }
+    return 'icons/'+n+'.gif'
+}
+function node(tree,n){
+    this.ind=tree.ind+1
+    this.cnt=tree.cnt[n+(this.ind ? 3 : 0)]
+    if(!this.cnt)return
+    this.tree=tree.tree
+    this.parent=tree
+    this.opened=!dhtml
+    this.nind=this.tree.nodes.length
+    this.tree.nodes[this.nind]=this
+    tree.childs[n]=this
+    this.childs=[]
+    for(var i=0;i < this.cnt.length - 2;i++)
+	new node(this,i)
+    this.get_img1=get_img1
+    this.get_img2=get_img2
+    this.open=open
+    this.select=select
+    this.init=init
+    this.is_last=function(){
+	return n==this.parent.childs.length - 1
+    }
+    this.is_first=function(){
+	return(this.ind==0)&&(n==0)&&(!this.is_last())
+    }
+}
+
+function open(){
+    var childs=[]
+    var el=get_element('divCont'+this.nind)
+    if(!el)return
+    if(!dhtml){
+	d.write(childs.join(''))
+	    for(var i=0;i < this.childs.length;i++){
+	    d.write(this.childs[i].init())
+	    this.childs[i].open()
+	}
+    }
+    else{
+	if(!el.innerHTML){
+	    for(var i=0;i < this.childs.length;i++)
+		childs[i]=this.childs[i].init()
+	    el.innerHTML=childs.join('')
+	}
+	el.style.display=(this.opened ? 'none' : 'block')
+	this.opened=!this.opened
+	var img1=d.images['img1_'+this.nind],img2=d.images['img2_'+this.nind]
+	if(img1)img1.src=this.get_img1()
+	if(img2)img2.src=this.get_img2()
+    }
+}
+
+
+function select(nind){
+    if(!nind){
+	var sel=this.tree.sel
+	this.tree.sel=this
+	if(sel)sel.select(true)
+    }
+    var img2=d.images['img2_'+this.nind]
+    if(img2)img2.src=this.get_img2()
+    get_element('el'+this.nind).style.fontWeight=nind ? 'normal' : 'bold'
+    return Boolean(this.cnt[1])
+}
+
+function init(){
+    var temp=[],par=this.parent
+    for(var i=this.ind;i>0;i--){
+	temp[i]='<img src="'+icons[par.is_last()? 0 : 1]+'" border="0" align="absbottom">'
+	par=par.parent
+    }
+    r='<table cellpadding="0" cellspacing="0" border="0">'
+    r+='<tr><td nowrap>'
+    r+=temp.join('')
+    r+=(this.childs.length ?(!dhtml ? '' : '<a href="javascript: tree.toggle('+this.nind+')" >')+'<img src="'+this.get_img1()+'" border="0" align="absbottom" name="img1_'+this.nind+'">'+(!dhtml ? '' : '</a>'): '<img src="'+this.get_img1()+'" border="0" align="absbottom">')
+    r+='<a href="'+this.cnt[1]+'" target="'+'content'+'"'+' title="'+this.cnt[0]+'" onclick="return tree.select('+this.nind+')" '+(!dhtml ? '' : ' ondblclick="tree.toggle('+this.nind+')"')+' class="small" id="el'+this.nind+'"><img src="'+this.get_img2()+'" border="0" align="absbottom" name="img2_'+this.nind+'">&nbsp;'+this.cnt[0]+'</a>'
+    r+='</td></tr></table>'
+    r+=(this.childs.length ? '<div id="divCont'+this.nind+'" style="display:none"></div>' : '')
+    return r
+}
+
+function draw_contents(cnt){
+    tree=this;
+    tree.cnt=cnt;
+    tree.tree=this;
+    tree.nodes=[];
+    tree.sel=null;
+    tree.ind=-1;
+    
+    tree.select=function(i){
+	return tree.nodes[i].select();
+    };
+    tree.toggle=function(i){
+	tree.nodes[i].open()
+    };
+    tree.childs=[]
+    for(var i=0;i<cnt.length;i++){
+	new node(tree,i)
+    }
+    tree.nind=0;
+    
+    for(var i=0;i < tree.childs.length;i++){
+	d.write(tree.childs[i].init());
+	if(!dhtml)tree.childs[i].open();
+    }
+}
+
+
+function getLoc(){
+var doc = ""+parent.frames[1].location;
+if(doc != lastDoc){
+        var keyVals = new Array();
+        keyVals = doc.split("\/");
+        var targetPage = ""+keyVals[(keyVals.length-1)];
+
+        if(targetPage.indexOf("\#") > 0){
+                targetPage = targetPage.substr(0,targetPage.indexOf("\#"));
+        }
+
+        nodeCount = 0;
+        while( (""+tree.nodes[nodeCount].cnt[1]).lastIndexOf(targetPage) < 0){
+                nodeCount++;
+        }
+        parentNode = tree.nodes[nodeCount].parent;
+                if(parentNode != tree && parentNode.opened == false){
+                        parentNode.open();
+                }
+        tree.nodes[nodeCount].select();
+        lastDoc = doc;
+        }
+}
+new draw_contents(contents);
+</script>
+ </body>
+</html>
