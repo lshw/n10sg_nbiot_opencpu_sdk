@@ -27,32 +27,32 @@ void test_all_in_one()
 	hal_spi_master_send_and_receive_config_t spi_send_and_receive_config;
 	custom_uart_init();
 	opencpu_get_base_version(base_version);
-	opencpu_printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	opencpu_printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n");
 	opencpu_printf(opencpu_fota_version_cb());
-	opencpu_printf("\nBASE_VERSION:%s\n",base_version);
-	opencpu_printf("update status:%d\n",update_status);
+	opencpu_printf("\nBASE_VERSION:%s\r\n",base_version);
+	opencpu_printf("update status:%d\r\n",update_status);
 	if(opencpu_is_boot_from_sleep()==1)
 	{
 
-		opencpu_printf("BOOT CAUSE:WAKE FROM SLEEP\n");
+		opencpu_printf("BOOT CAUSE:WAKE FROM SLEEP\r\n");
 	}
 	else
 	{
-		opencpu_printf("BOOT CAUSE:POWER_ON OR RESET\n");
+		opencpu_printf("BOOT CAUSE:POWER_ON OR RESET\r\n");
 	}
-	opencpu_printf("N10SG opencpu ready!!\n");
-	opencpu_printf("waiting for network...\n");
+	opencpu_printf("N10SG opencpu ready!!\r\n");
+	opencpu_printf("waiting for network...\r\n");
     opencpu_lock_light_sleep();
 	//阻塞方式获取ICCID，必须要有SIM卡才能读到
 	test_get_iccid();
 	//获取网络注册状态，并阻塞等待网络注册成功
-	opencpu_printf("network registering...\n");
+	opencpu_printf("network registering...\r\n");
 	while(opencpu_cgact()!=1)
 	{
 		vTaskDelay(10);
 	}
-	opencpu_printf("network register success\n");
-	opencpu_printf("network ready!!\n");
+	opencpu_printf("network register success\r\n");
+	opencpu_printf("network ready!!\r\n");
 	test_pwm_init();
 	opencpu_printf("please input cmds");
 	uart_cmd = 0;
@@ -62,20 +62,20 @@ void test_all_in_one()
 		if(uart_cmd == 'f')
 		{
 			opencpu_fota_try_download();
-			opencpu_printf("start qurey\n");
+			opencpu_printf("start qurey\r\n");
 			uart_cmd = 0;
 		}
 		//FOTA升级
 		if(uart_cmd == 'u')
 		{
 			opencpu_fota_update();
-			opencpu_printf("start update!!\n");
+			opencpu_printf("start update!!\r\n");
 			uart_cmd = 0;
 		}
 		if(uart_cmd == 'a')
 		{
 			test_dm_trigger_mode();
-			opencpu_printf("test pm\n");
+			opencpu_printf("test pm\r\n");
 			uart_cmd = 0;
 		}
 	  //测试udp
@@ -94,7 +94,7 @@ void test_all_in_one()
 	   if(uart_cmd == 'X')
 	   {
 		   opencpu_csq(&rssi,&rxlevel);
-		   opencpu_printf("%d,%d\n",rssi,rxlevel);
+		   opencpu_printf("%d,%d\r\n",rssi,rxlevel);
 		   uart_cmd = 0;
 	   }
 	   //测试onenet
@@ -166,18 +166,18 @@ void test_all_in_one()
 	   }
        if(uart_cmd == '1')
 	   {
-			opencpu_printf("%f,%f,%f,%f,%f,%f,%f\n",sin(2),sin(3),cos(2),tan(2),atan(1),acos(-1),asin(-1));
+			opencpu_printf("%f,%f,%f,%f,%f,%f,%f\r\n",sin(2),sin(3),cos(2),tan(2),atan(1),acos(-1),asin(-1));
 		    uart_cmd = 0;
 	   }
 	   if(uart_cmd == '0')
 	   {
-		   opencpu_printf("time:%d\n",time(0));
+		   opencpu_printf("time:%d\r\n",time(0));
 		   uart_cmd = 0;
 	   }
 	   if(uart_cmd == '2')
 	   {
 
-			opencpu_printf("prod imei write:%d\n",opencpu_write_prod_imei("869975030003275"));
+			opencpu_printf("prod imei write:%d\r\n",opencpu_write_prod_imei("869975030003275"));
 		    uart_cmd = 0;
 	   }
 
@@ -192,7 +192,7 @@ void test_all_in_one()
 	   {
 		   ril_eps_network_registration_status_rsp_t param;
 		   opencpu_cereg_read(&param);
-		   opencpu_printf("+CEREG:%d,%d\n",param.active_time,param.periodic_tau);
+		   opencpu_printf("+CEREG:%d,%d\r\n",param.active_time,param.periodic_tau);
 
 		   uart_cmd = 0;
 	   }
@@ -214,7 +214,7 @@ void test_all_in_one()
 	   {
 	   	   ril_power_saving_mode_setting_rsp_t psm_rsp1;
 	   	   opencpu_get_psmparam(&psm_rsp1);
-	   	   opencpu_printf("%d,%s,%s,%s,%s\n",psm_rsp1.mode,psm_rsp1.req_prdc_rau,
+	   	   opencpu_printf("%d,%s,%s,%s,%s\r\n",psm_rsp1.mode,psm_rsp1.req_prdc_rau,
 	   	                  psm_rsp1.req_gprs_rdy_tmr,psm_rsp1.req_prdc_tau,psm_rsp1.req_act_time);
 
 
@@ -239,21 +239,21 @@ void test_all_in_one()
 			 int temp_type;
 			 unsigned char temp_value[10];
              opencpu_read_edrx(&temp_type,temp_value);
-             opencpu_printf("type:%d,value:%s\n",temp_type,temp_value);
+             opencpu_printf("type:%d,value:%s\r\n",temp_type,temp_value);
              uart_cmd = 0;
 		 }
 		 //测试EDRX参数设置
 		 if(uart_cmd == 'e')
 		 {
 			 opencpu_set_edrx(1,5,"0101");
-			 opencpu_printf("edrx set ok\n");
+			 opencpu_printf("edrx set ok\r\n");
 			 uart_cmd = 0;
 		 }
 
 		 if(uart_cmd == '%')
 		 {
 			 opencpu_set_cmsysctrl(0, 2, 50, 300, 100, 800);
-			 opencpu_printf("net state ok\n");
+			 opencpu_printf("net state ok\r\n");
 			 uart_cmd = 0;
 		 }
 		 if(uart_cmd == '&')
@@ -263,7 +263,7 @@ void test_all_in_one()
 			 {
 				 i++;
 				 opencpu_delay_ms(1000);
-				 opencpu_printf("i:%d\n",i);
+				 opencpu_printf("i:%d\r\n",i);
 			 }
 			 uart_cmd = 0;
 		 }
@@ -274,7 +274,7 @@ void test_all_in_one()
 			 {
 				 i++;
 				 opencpu_delay_us(1000000);
-				 opencpu_printf("i:%d\n",i);
+				 opencpu_printf("i:%d\r\n",i);
 			 }
 			 uart_cmd = 0;
 		 }
