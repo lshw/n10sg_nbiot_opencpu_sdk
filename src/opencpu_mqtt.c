@@ -1,11 +1,11 @@
 #include "n10sg_opencpu.h"
 
 /***************************************
-???????onenet mqtt??
-CLIENTID:??????
-USER:????ID
-PWD:?onenet???token.exe?????
-CMDREQUEST:
+以下定义适用于onenet mqtt套件
+CLIENTID:对应设备名称
+USER:对应产品ID
+PWD:用onenet官网的token.exe工具生成。
+CMDREQUEST：
 
 ***************************************/
 #define HOST "183.230.40.16"
@@ -19,8 +19,8 @@ CMDREQUEST:
 uint8 onenetFlag = 0;
 
 /*****************************************************
-ack ????,publish msg ??ack?????????,??????;
-??:qos>0 ??opencpu_mqttpub ??????,???ack ???null
+ack 回调函数，publish msg 收到ack后会触发该类型函数,用户自行编写;
+传入:qos>0 时在opencpu_mqttpub 中传入该函数，不关心ack 可传入null
 /*****************************************************/
 void opencpu_recvpuback_cb()
 {
@@ -35,8 +35,8 @@ void opencpu_recvpuback_cb1()
 }
 
 /*****************************************************
-???????????:???????topic???????????????
-??:?opencpu_mqttsub ???topic?????????
+接收到某主题的回调函数:接收到平台下对topic的推送消息是会触发该类型函数。
+传入:在opencpu_mqttsub 订阅某topic时传入该类型函数。
 
 /*****************************************************/
 void opencpu_defaultpublish_cb(uint32_t dup, uint32_t qos, uint32_t retained, uint32_t msgid, char *topicname, uint32_t msglen, char *msg)
@@ -45,15 +45,15 @@ void opencpu_defaultpublish_cb(uint32_t dup, uint32_t qos, uint32_t retained, ui
 	opencpu_printf("+OPENCPUCPUBLISH:%d,%d,%d,%d,%s,%d,%s\n",dup, qos, retained, msgid, topicname,msglen, msg);
 	if(onenetFlag == 1)
 	{
-
+		
 		char* res = strstr(topicname,CMDREQUEST);
 		if(res != NULL)
 		{
 			char* cmdid = &topicname[strlen(CMDREQUEST)];
 			char topic[96] = CMDRESPON;
 			strcat(topic,cmdid);
-			// ?????????,????????
-			opencpu_mqttpub(topic,0, 0, 0, 0, "REC OK", NULL);
+			// 回复平台下发的指令，回复内容可自定义
+			opencpu_mqttpub(topic,0, 0, 0, 0, "REC OK", NULL);	
 		}
 	}
 	if(strcmp(msg,"close") == 0)
@@ -84,7 +84,7 @@ void opencpu_userpublish_cb1(uint32_t dup, uint32_t qos, uint32_t retained, uint
 }
 
 /*****************************
-????????????
+连接服务器成功的回调函数
 *****************************/
 void opencpu_open_cb(uint8_t result)
 {
@@ -92,11 +92,11 @@ void opencpu_open_cb(uint8_t result)
 	{
 		opencpu_printf("%s\n","MQTTCLIENT CONNECT OK");
 	}
-
+	
 }
 
 /***********************************
-???????????
+和服务器断开的回调函数
 ***********************************/
 void opencpu_disc_cb()
 {
@@ -104,7 +104,7 @@ void opencpu_disc_cb()
 }
 
 /************************************************
-??1
+测试1
 
 /************************************************/
 
@@ -133,8 +133,8 @@ mqtt_test1()
 }
 
 /************************************************
-onenet mqtt ???????
-??onenet ????????topic??
+onenet mqtt 套件非加密示例
+目前onenet 平台不支持自定义topic订阅
 /************************************************/
 
 mqtt_test2()
@@ -164,19 +164,19 @@ mqtt_test2()
 	opencpu_printf("mqtt test2 over\n");
 }
 /*********************************************
-onenet mqtt?????????
-?$sys ????????topic,???????topic?,
-?opencpu_mqttsub?????????NULL,???? opencpu_defaultpublish_cb
-"$sys/XXXX/XXXXt/dp/post/json"  ????????
-"$sys/247845/test/cmd/request/+": ??????????????
+onenet mqtt新套件加密连接示例
+带$sys 为平台定义的特殊topic,订阅平台的特殊topic时，
+将opencpu_mqttsub最后的回调函数置为NULL，默认调用 opencpu_defaultpublish_cb
+"$sys/XXXX/XXXXt/dp/post/json"  数据在平台上显示
+"$sys/247845/test/cmd/request/+": 订阅之后可接受平台下发的指令
 **********************************************/
 mqtt_test3()
 {
 	opencpu_printf("mqtt test3 start\n");
 	opencpu_mqttcfg(HOST,PORT,CLIENTID,KEEPALIVE,USER,PWD,1);
-	//???????,?opencpu_mqttcfg????
+	//设置为加密连接，在opencpu_mqttcfg之后设置
 	opencpu_mqttencrypt(1);
-	//????????
+	//写入平台给的证书
 	opencpu_mqttca("MIIDOzCCAiOgAwIBAgIJAPCCNfxANtVEMA0GCSqGSIb3DQEBCwUAMDQxCzAJBgNVBAYTAkNOMQ4wDAYDVQQKDAVDTUlPVDEVMBMGA1UEAwwMT25lTkVUIE1RVFRTMB4XDTE5MDUyOTAxMDkyOFoXDTQ5MDUyMTAxMDkyOFowNDELMAkGA1UEBhMCQ04xDjAMBgNVBAoMBUNNSU9UMRUwEwYDVQQDDAxPbmVORVQgTVFUVFMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC/VvJ6lGWfy9PKdXKBdzY83OERB35AJhu+9jkx5d4SOtZScTe93Xw9TSVRKrFwu5muGgPusyAlbQnFlZoTJBZY/745MG6aeli6plpRr93G6qVN5VLoXAkvqKslLZlj6wXy70/e0GC0oMFzqSP0AY74icANk8dUFB2Q8usSUseRafNBcYfqACzF/Wa+Fu/upBGwtl7wDLYZdCm3KNjZZZstvVB5DWGnqNX9HkTlU9NBMS/7yph3XYU3mJqUZxryb8pHLVHazarNRppx1aoNroi+5/t3Fx/gEa6a5PoPouH35DbykmzvVE67GUGpAfZZtEFE1e0E/6IB84PE00llvy3pAgMBAAGjUDBOMB0GA1UdDgQWBBTTi/q1F2iabqlS7yEoX1rbOsz5GDAfBgNVHSMEGDAWgBTTi/q1F2iabqlS7yEoX1rbOsz5GDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQALaqJ2FgcKLBBHJ8VeNSuGV2cxVYH1JIaHnzL6SlE5q7MYVg+Ofbs2PRlTiWGMazC7q5RKVj9zj0z/8i3ScWrWXFmyp85ZHfuo/DeK6HcbEXJEOfPDvyMPuhVBTzuBIRJb41M27NdIVCdxP6562n6Vp0gbE8kN10q+ksw8YBoLFP0D1da7D5WnSV+nwEIP+F4a3ZX80bNt6tRj9XY0gM68mI60WXrF/qYL+NUz+D3Lw9bgDSXxpSN8JGYBR85BxBvRNNAhsJJ3yoAvbPUQ4m8J/CoVKKgcWymS1pvEHmF47pgzbbjm5bdthlIx+swdiGFaWzdhzTYwVkxBaU+xf/2w");
 	opencpu_mqttopen(1,1,0,0,0,0,0);
 	while(opencpu_mqttstat() != 5)
@@ -189,10 +189,10 @@ mqtt_test3()
 	opencpu_mqttsub("$sys/247845/test/cmd/request/+",1,NULL);
 	vTaskDelay(500/portTICK_RATE_MS);
 	opencpu_mqttsub("$sys/247845/test/cmd/response/+/+",1,NULL);
-	//hex ?????dp????
+	//hex 形式向平台dp发送数据
 	vTaskDelay(500/portTICK_RATE_MS);
 	opencpu_mqttpub("$sys/247845/test/dp/post/json",0,0,0,66,"7b226964223a3132333435362c226470223a7b2274656d7065726174727565223a5b7b2276223a33302c7d5d2c22706f776572223a5b7b2276223a35352c7d5d7d7d",NULL);
-	//json ?????dp????
+	//json 形式向平台dp发送数据
 	vTaskDelay(500/portTICK_RATE_MS);
 	opencpu_mqttpub("$sys/247845/test/dp/post/json",1,0,0,0,"{\"id\":123458,\"dp\":{\"temperatrue\":[{\"v\":31,}],\"power\":[{\"v\":58,}]}}",NULL);
 	vTaskDelay(500/portTICK_RATE_MS);
