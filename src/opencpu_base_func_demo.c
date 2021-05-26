@@ -246,7 +246,7 @@ void cJSON_test()
 
     out=cJSON_Print(root);
     cJSON_Delete(root);
-    opencpu_printf("%s\n",out);
+    opencpu_printf("%s\r\n",out);
     cJSON_free(out);
 
 }

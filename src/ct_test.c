@@ -55,7 +55,7 @@ void test_ct_init()
 
     opencpu_ct_create(&callback);//初始化任务
 
-    if (APB_PROXY_RESULT_OK == opencpu_ct_new("180.101.147.115", "5683"))
+    if (APB_PROXY_RESULT_OK == opencpu_ct_new("221.229.214.202", "5683"))
     {
         opencpu_printf("ct_new OK\n");
     }
@@ -66,7 +66,7 @@ void test_ct_init()
     }
     vTaskDelay(1000 / portTICK_RATE_MS);
 
-    if(APB_PROXY_RESULT_OK == opencpu_ct_open(1, 90))
+    if(APB_PROXY_RESULT_OK == opencpu_ct_open(0, 90))
     {
         opencpu_printf("ct_open OK\n");
     }
@@ -78,7 +78,7 @@ void test_ct_init()
 
     vTaskDelay(1000 / portTICK_RATE_MS);
 
-    if(APB_PROXY_RESULT_OK == opencpu_ct_setcfg(1,1))
+    if(APB_PROXY_RESULT_OK == opencpu_ct_setcfg(0,0))
     {
         opencpu_printf("ct_setcfg OK\n");
     }
@@ -111,6 +111,7 @@ void test_ct_read()
     int read_actual_length = 0;
     int remain_length = 0;
     char *readdata = (char*)malloc(50);
+	memset(readdata, 0, 50);
     if (readdata == NULL)
     {
         opencpu_printf("malloc fail\n");

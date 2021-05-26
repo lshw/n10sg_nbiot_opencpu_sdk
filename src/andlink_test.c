@@ -54,8 +54,7 @@ void opencpu_andlink_read_cb_ok(int mid, int objid, int insid, int resid)
         opencpu_andlink_result(mid, RESULT_400_BADREQUEST);//返回表示该操作结果错误
     }
 }
-
-void opencpu_andlink_write_cb(int mid, int objid,int insid, int resid, int type, int flag, int len, char *data)
+void opencpu_andlink_write_cb(int mid, int len, char *data)
 {
     //TODO
     //...

@@ -14,8 +14,8 @@ char test_rx_buf[100];
 */
 void test_cmdns_cb(unsigned char *ip)
 {
-
-    opencpu_printf ("opencpu dns:%s\n",ip);
+	
+    opencpu_printf ("opencpu dns:%s\r\n",ip);	
 }
 /*
    ping功能的回调函数，用户在这个回调函数里处理结果
