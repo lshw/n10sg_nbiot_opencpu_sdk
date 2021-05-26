@@ -201,9 +201,9 @@ int get_run_mode(void);
 void opencpu_get_base_version(unsigned char *base_ver);
 /**
  *  \brief 获取当前固件支持的硬件版本
- *
- *  \return 0：CM 5：LV
- *
+ *  
+ *  \return 0：CM 1：CL 2：DB 3：GB 4：AL 5：LV
+ *  
  *  \details 请一定确认固件和实际的硬件版本一致。后续可能会有更多硬件版本
  */
 int get_band_version(void);
@@ -469,6 +469,34 @@ int opencpu_is_boot_from_sleep(void);
    *
    */
   int opencpu_changebaud(serial_port_dev_t id,int baud);
+  /**
+ *  \brief MLPINFO读取
+   *  
+   *  \param [in] mode 0: unit of 0.1second  1: unit of millisecond
+   *  \param [in] info 存储结果变量的地址
+   *  \return 空
+   *  
+   *  \details AT命令的使用方法请查阅AT文档，结构体的定义请参考ril.h
+ */
+  void opencpu_mlpinfo(int mode,ril_low_power_related_info_rsp_t *info);
+
+    /**
+ *  \brief band信息读取
+   *  
+   *  \param [in] readband 存储结果变量的地址，结构体成员中0表示未开启对应的band，1表示开启
+   *  \return 0 成功 1 失败
+   *  
+ */
+ int opencpu_cmband_read(cmband_cfg_t *readband);
+	/**
+ *  \brief band信息写入
+   *  
+   *  \param [in] writeband 结构体成员中0表示关闭对应的band，1表示开启。全0为恢复默认值，全1在N10SG中不支持。
+   *  \return 0 成功 1 失败
+   *  
+ */
+int opencpu_cmband_write(cmband_cfg_t *writeband);
+
 
 
   /** @} */
@@ -1046,9 +1074,9 @@ int opencpu_rtc_timer_delete(uint32_t handle);
  *@{
  */
 /**
- *  \brief
- *
- *  \param [in] chan ADC通道号，支持HAL_ADC_CHANNEL_0，HAL_ADC_CHANNEL_1，HAL_ADC_CHANNEL_3，HAL_ADC_CHANNEL_4
+ *  \brief 
+ *  
+ *  \param [in] chan ADC通道号，支持HAL_ADC_CHANNEL_0，HAL_ADC_CHANNEL_1，HAL_ADC_CHANNEL_2
  *  \return 电压值
  *
  */

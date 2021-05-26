@@ -1,21 +1,21 @@
-/*******************************************************************************
-
- *******************************************************************************/
 #ifndef __CMMQTT_OC_C_
 #define __CMMQTT_OC_C_
 
-/*****************************************************
-参数配置:
-server : 服务器地址
-port: 端口号
-client_id : 客户id
-keepAlive : 发送ping包间隔
-user: 用户名
-passwd:密码
-clean : 连接时是否清除之前的seesion
-返回 :配置成功返回0，配置失败返回其他值。
-notice :处于UNINITIALED 状态时才可进行配置
-******************************************************/
+
+/**
+ *  \brief 配置MQTT相关参数
+ *  
+ *  \param [in] server 服务器地址
+ *  \param [in] port 端口号
+ *  \param [in] client_id 客户id
+ *  \param [in] keepAlive 发送ping包间隔
+ *  \param [in] user 用户名
+ *  \param [in] passwd 密码
+ *  \param [in]clean 连接时是否清除之前的seesion
+ *  \return 0:成功 -1：失败
+ *  
+ *  \details More details
+ */
 int opencpu_mqttcfg(char* server, uint32_t port, char* client_id,  uint32_t keepAlive, char* user, char* passwd, uint32_t clean);
 
 /*****************************************************
@@ -28,8 +28,21 @@ will_qos:  qos(0-2)
 will_topic: willmsg topic
 will_msg : willmsg
 返回 :发起成功返回0，失败返回其他值。异步连接模式，最终连接成功需判断根据是否收到MQTTOPEN:OK
-notice: 处于INITIALED 转态势可发起连接，连接成功后状态会变为CONNECTED
+notice: 处于INITIALED 状态时可发起连接，连接成功后状态会变为CONNECTED
 ******************************************************/
+/**
+ *  \brief 和服务器建立连接
+ *  
+ *  \param [in] user_flag 用户标志(0-1)
+ *  \param [in] pwd_flag  密码标志(0-1)
+ *  \param [in] will_flag willmsg标志(0-1)
+ *  \param [in] retain_flag 持久化标志(0-1)
+ *  \param [in] will_qos  qos(0-2)
+ *  \param [in] will_msg  willmsg
+ *  \return 0:发起连接成功 -1：失败  
+ *  
+ *  \details More details 处于INITIALED 状态时可发起连接，连接成功后状态会变为CONNECTED，异步连接模式
+ */
 int opencpu_mqttopen(uint32_t user_flag, uint32_t pwd_flag, uint32_t will_flag, uint32_t retain_flag, uint32_t will_qos, char* will_topic, char* will_msg);
 
 /*****************************************************
@@ -44,7 +57,7 @@ state :
 	NET_CONNECTING: 6
 	NET_CONNECTED :7
 返回 :state 状态值
-notice: 可根据当前转态进行合理的操作
+notice: 可根据当前状态进行合理的操作
 ******************************************************/
 int opencpu_mqttstat();
 
