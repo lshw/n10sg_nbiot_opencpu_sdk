@@ -23,7 +23,7 @@
   <td id="projectlogo"><img alt="Logo" src="1_bigpic.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">N10SG OPENCPU MANUAL
-   &#160;<span id="projectnumber">V1.1.0</span>
+   &#160;<span id="projectnumber">V1.2.0</span>
    </div>
    <div id="projectbrief">N10SG OPENCPU SDK API使用说明 AUTHOR:XGL</div>
   </td>
@@ -190,6 +190,15 @@ Functions</h2></td></tr>
 <tr class="memitem:gad69e5f68d08090a5b8330dfff7ee7718"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad69e5f68d08090a5b8330dfff7ee7718">opencpu_changebaud</a> (serial_port_dev_t id, int baud)</td></tr>
 <tr class="memdesc:gad69e5f68d08090a5b8330dfff7ee7718"><td class="mdescLeft">&#160;</td><td class="mdescRight">修改串口波特率，主要用于设置log口波特率  <a href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gad69e5f68d08090a5b8330dfff7ee7718">More...</a><br /></td></tr>
 <tr class="separator:gad69e5f68d08090a5b8330dfff7ee7718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga54c02574d0672468af15dd2c385cacce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga54c02574d0672468af15dd2c385cacce">opencpu_mlpinfo</a> (int mode, ril_low_power_related_info_rsp_t *info)</td></tr>
+<tr class="memdesc:ga54c02574d0672468af15dd2c385cacce"><td class="mdescLeft">&#160;</td><td class="mdescRight">MLPINFO读取  <a href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga54c02574d0672468af15dd2c385cacce">More...</a><br /></td></tr>
+<tr class="separator:ga54c02574d0672468af15dd2c385cacce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa641be3f87d03187c1be94785c6120bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaa641be3f87d03187c1be94785c6120bd">opencpu_cmband_read</a> (cmband_cfg_t *readband)</td></tr>
+<tr class="memdesc:gaa641be3f87d03187c1be94785c6120bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">band信息读取  <a href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gaa641be3f87d03187c1be94785c6120bd">More...</a><br /></td></tr>
+<tr class="separator:gaa641be3f87d03187c1be94785c6120bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae40dca50e91905c85c539b6902716a7c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gae40dca50e91905c85c539b6902716a7c">opencpu_cmband_write</a> (cmband_cfg_t *writeband)</td></tr>
+<tr class="memdesc:gae40dca50e91905c85c539b6902716a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">band信息写入  <a href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#gae40dca50e91905c85c539b6902716a7c">More...</a><br /></td></tr>
+<tr class="separator:gae40dca50e91905c85c539b6902716a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><br  />
@@ -243,7 +252,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>获取当前固件支持的硬件版本 </p>
-<dl class="section return"><dt>Returns</dt><dd>0：CM 5：LV</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0：CM 1：CL 2：DB 3：GB 4：AL 5：LV</dd></dl>
 <p>请一定确认固件和实际的硬件版本一致。后续可能会有更多硬件版本 </p>
 
 </div>
@@ -418,7 +427,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>查询网络是否注册成功 </p>
-<dl class="section return"><dt>Returns</dt><dd>1：已注册 -1：未注册</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1：已注册 0：未注册</dd></dl>
 <p>示例：下面代码用来循环等待模组驻网成功，然后执行其他数据收发操作 </p><div class="fragment"><div class="line"><span class="keywordflow">while</span>(<a class="code" href="group___b_a_s_e___f_u_n_c_t_i_o_n_s.html#ga5ae0aa4d47f85ff7e1aed61acaab0e14">opencpu_cgact</a>()!=1)</div>
 <div class="line">{</div>
 <div class="line">    vTaskDelay(10);</div>
@@ -482,6 +491,60 @@ Functions</h2></td></tr>
 
 <p>清频 </p>
 <dl class="section return"><dt>Returns</dt><dd>0：成功 &lt;0：失败 </dd></dl>
+
+</div>
+</div>
+<a id="gaa641be3f87d03187c1be94785c6120bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa641be3f87d03187c1be94785c6120bd">&#9670;&nbsp;</a></span>opencpu_cmband_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int opencpu_cmband_read </td>
+          <td>(</td>
+          <td class="paramtype">cmband_cfg_t *&#160;</td>
+          <td class="paramname"><em>readband</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>band信息读取 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">readband</td><td>存储结果变量的地址，结构体成员中0表示未开启对应的band，1表示开启 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 成功 1 失败 </dd></dl>
+
+</div>
+</div>
+<a id="gae40dca50e91905c85c539b6902716a7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae40dca50e91905c85c539b6902716a7c">&#9670;&nbsp;</a></span>opencpu_cmband_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int opencpu_cmband_write </td>
+          <td>(</td>
+          <td class="paramtype">cmband_cfg_t *&#160;</td>
+          <td class="paramname"><em>writeband</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>band信息写入 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">writeband</td><td>结构体成员中0表示关闭对应的band，1表示开启。全0为恢复默认值，全1在N10SG中不支持。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 成功 1 失败 </dd></dl>
 
 </div>
 </div>
@@ -993,6 +1056,45 @@ Functions</h2></td></tr>
 <p>关闭模组浅睡眠，执行了此函数之后，设备将无法进入浅睡眠以及PSM等各种省电模式 </p>
 <dl class="section return"><dt>Returns</dt><dd>空</dd></dl>
 <p>该函数用于用户要执行耗时操作的时候，为防止模组意外进入省电模式，导致数据丢失、程序失控等，先执行此函数关闭睡眠，耗时操作执行完毕之后再开启 </p>
+
+</div>
+</div>
+<a id="ga54c02574d0672468af15dd2c385cacce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga54c02574d0672468af15dd2c385cacce">&#9670;&nbsp;</a></span>opencpu_mlpinfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void opencpu_mlpinfo </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ril_low_power_related_info_rsp_t *&#160;</td>
+          <td class="paramname"><em>info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MLPINFO读取 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>0: unit of 0.1second 1: unit of millisecond </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>存储结果变量的地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>空</dd></dl>
+<p>AT命令的使用方法请查阅AT文档，结构体的定义请参考ril.h </p>
 
 </div>
 </div>
